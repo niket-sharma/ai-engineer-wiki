@@ -1,0 +1,6 @@
+.obsidian/
+.DS_Store
+*.swp
+*.tmp
+__pycache__/
+.env
