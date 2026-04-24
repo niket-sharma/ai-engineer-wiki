@@ -1,6 +1,6 @@
 # Probability and Statistics for ML Interviews
 
-**Sources:** "All of Statistics" (Wasserman), "Probability Theory" (Jaynes), standard ML interview prep
+**Sources:** "All of Statistics" (Wasserman), "Probability Theory" (Jaynes), standard ML  prep
 
 ---
 
@@ -17,7 +17,7 @@ P(A|B) = P(B|A) · P(A) / P(B)
 - **Evidence:** P(B) = Σ_A P(B|A)·P(A) — normalizing constant
 - **Posterior:** P(A|B) — updated belief after seeing data
 
-**Classic interview example:** A test for a disease is 99% accurate (sensitivity = specificity = 0.99). Disease prevalence = 1 in 1000. You test positive. What's the probability you have the disease?
+**Classic  example:** A test for a disease is 99% accurate (sensitivity = specificity = 0.99). Disease prevalence = 1 in 1000. You test positive. What's the probability you have the disease?
 
 ```
 P(disease | positive) = P(positive | disease) · P(disease) / P(positive)
@@ -234,7 +234,7 @@ KL(p || q) = H(p, q) - H(p)
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "A test has 99% sensitivity and 99% specificity. For a disease with 1% prevalence, what's the PPV?"
 - "Explain Type I vs Type II error. How do you reduce each?"

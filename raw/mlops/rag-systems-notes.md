@@ -185,7 +185,7 @@ Index multiple representations of the same document:
 
 ---
 
-## Common Interview-Relevant RAG Details
+## Common -Relevant RAG Details
 
 ### "Lost in the Middle" (Liu et al. 2023)
 
@@ -214,7 +214,7 @@ LLMs perform best when relevant information is at the **beginning or end** of th
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "Walk me through the RAG pipeline from document ingestion to answer generation."
 - "What chunking strategy would you use for technical documentation?"

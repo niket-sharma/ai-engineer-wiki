@@ -1,11 +1,11 @@
 ---
-title: "RAG & Retrieval Interview Q&A"
-tags: [interview-qa, rag, retrieval]
+title: "RAG & Retrieval  Q&A"
+tags: [-qa, rag, retrieval]
 related: ["[[rag-systems]]", "[[vector-databases]]", "[[reranking]]"]
 last_updated: 2026-04-22
 ---
 
-# RAG & Retrieval Interview Q&A
+# RAG & Retrieval  Q&A
 
 ---
 

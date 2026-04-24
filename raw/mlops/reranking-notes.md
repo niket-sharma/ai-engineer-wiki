@@ -212,7 +212,7 @@ Typical RAG pipeline latency breakdown:
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "What's the difference between a bi-encoder and a cross-encoder?"
 - "Why use a two-stage retrieval pipeline? Why not just use a cross-encoder for everything?"

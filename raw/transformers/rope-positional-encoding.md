@@ -177,7 +177,7 @@ Different heads have different slopes → different "attention horizons."
 
 ---
 
-## Interview-Relevant Insights
+## -Relevant Insights
 
 **Why RoPE became the standard:**
 1. Relative position is inherent to the formulation (better inductive bias than absolute PE)
@@ -192,7 +192,7 @@ Different heads have different slopes → different "attention horizons."
 
 ---
 
-## Common Interview Questions From This Paper
+## Common  Questions From This Paper
 
 - "What is RoPE? How does it encode relative position?"
 - "Why does RoPE encode relative and not absolute position?"

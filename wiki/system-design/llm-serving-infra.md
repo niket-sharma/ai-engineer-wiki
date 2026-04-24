@@ -122,7 +122,7 @@ Result: ~2–3× speedup for tasks where draft model's acceptance rate is high (
 | Quantization | FP16 | INT8 | INT8 in production — 50% memory, minimal quality loss |
 | Speculative decoding | Yes | No | Yes for structured output tasks; skip for open-ended |
 
-## Interview Angles
+##  Angles
 
 **Common questions:**
 - "What is continuous batching and why does it matter?"

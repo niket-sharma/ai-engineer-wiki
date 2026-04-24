@@ -17,7 +17,7 @@ source added. Query the wiki instead of re-reading raw sources.
 - **INGEST:** Add a new source → "ingest raw/transformers/paper.md"
 - **QUERY:** Ask a question → "what does the wiki say about KV cache?"
 - **AUDIT:** Health check → "audit the wiki"
-- **GENERATE:** Make Q&A → "generate interview questions on LoRA"
+- **GENERATE:** Make Q&A → "generate  questions on LoRA"
 - **COMPANY:** Company prep → "prep me for Capital One"
 - **CHEATSHEET:** Quick ref → "make a cheatsheet for positional encoding"
 

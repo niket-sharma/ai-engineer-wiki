@@ -238,7 +238,7 @@ Confounder: department choice.
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "What is confounding and how do you handle it?"
 - "What's the difference between correlation and causation in the context of ML models?"

@@ -1,6 +1,6 @@
 ---
 title: "Exxon"
-aliases: ["ExxonMobil AI", "Exxon interview prep", "ExxonMobil", "XOM"]
+aliases: ["ExxonMobil AI", "Exxon  prep", "ExxonMobil", "XOM"]
 tags: [company, energy, optimization, timeseries, industrial-ai]
 related: ["[[ml-platform]]"]
 sources: ["training-knowledge", "public-job-postings"]
@@ -28,7 +28,7 @@ AI/ML roles here are more "industrial AI" than "LLM" — expect more emphasis on
 - **Data**: industrial IoT sensor data, time series databases (InfluxDB or PI)
 - **Scale**: smaller data volumes than fintech but high-stakes reliability requirements
 
-## Interview Style
+##  Style
 - **Applied ML depth**: expect questions grounded in industrial use cases
 - **Time series**: anomaly detection, forecasting, signal processing will feature heavily
 - **Optimization**: linear programming, reinforcement learning for process control

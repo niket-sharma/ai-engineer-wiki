@@ -189,7 +189,7 @@ model.print_trainable_parameters()
 
 ---
 
-## Interview-Relevant Insights
+## -Relevant Insights
 
 **The non-obvious question: "Why two matrices instead of one?"**
 If we used a single matrix C ∈ R^(d×k) with rank constraint, we'd need to do SVD during training to maintain the rank constraint — computationally expensive. Using B·A explicitly factorizes the low-rank update: the product B·A always has rank ≤ r by construction, and training is just SGD on B and A.
@@ -200,7 +200,7 @@ If we used a single matrix C ∈ R^(d×k) with rank constraint, we'd need to do 
 
 ---
 
-## Common Interview Questions From This Paper
+## Common  Questions From This Paper
 
 - "Walk me through LoRA mathematically. Why two matrices B and A?"
 - "Why is B initialized to zero in LoRA?"

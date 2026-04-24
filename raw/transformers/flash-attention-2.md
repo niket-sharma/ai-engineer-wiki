@@ -177,7 +177,7 @@ model = AutoModelForCausalLM.from_pretrained(
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "What specifically did FA2 improve over FA1?"
 - "How does FA2 avoid the N×N memory problem in standard attention?"

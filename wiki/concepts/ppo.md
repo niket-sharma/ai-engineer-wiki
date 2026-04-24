@@ -75,7 +75,7 @@ A_t = Σ_{k=0}^{∞} (γλ)^k δ_{t+k}    where δ_t = r_t + γV(s_{t+1}) - V(s_
 | Clipping prevents catastrophic updates | Sample-inefficient — needs fresh rollouts each iteration |
 | Well-understood, widely used | Sensitive to hyperparameters (ε, β, learning rate) |
 
-## Interview Angles
+##  Angles
 
 **What interviewers are really testing:**
 - Can you explain the clipping objective and why it prevents large updates?

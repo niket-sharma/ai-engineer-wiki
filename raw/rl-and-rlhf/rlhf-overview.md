@@ -161,9 +161,9 @@ KL penalty: "stay close to SFT behavior, just improve it at the margin"
 
 ---
 
-## Interview-Relevant Insights
+## -Relevant Insights
 
-**The most common RLHF interview error:** Forgetting that 4 models are loaded simultaneously during PPO. Memory is the main practical constraint.
+**The most common RLHF  error:** Forgetting that 4 models are loaded simultaneously during PPO. Memory is the main practical constraint.
 
 **Why not skip SFT?** Starting PPO from raw pretraining makes the KL constraint meaningless — the initial policy is too random relative to instruction-following. SFT gives a good starting point from which PPO makes incremental improvements.
 
@@ -173,7 +173,7 @@ KL penalty: "stay close to SFT behavior, just improve it at the margin"
 
 ---
 
-## Common Interview Questions From This Paper
+## Common  Questions From This Paper
 
 - "Walk me through the three stages of RLHF."
 - "What is the reward model and how is it trained?"

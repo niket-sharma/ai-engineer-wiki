@@ -254,7 +254,7 @@ ORDER BY distance LIMIT 10;
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "Walk me through how HNSW works."
 - "When would you use IVF-PQ instead of HNSW?"

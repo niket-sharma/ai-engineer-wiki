@@ -12,7 +12,7 @@ status: current
 # RAG Systems
 
 ## TL;DR
-RAG grounds LLM responses in retrieved documents, reducing hallucination and enabling knowledge updates without retraining. The core pattern: embed query → retrieve relevant chunks → prepend to context → generate. Real production systems add chunking strategy, reranking, hybrid search, and evaluation layers that are the meat of interview questions.
+RAG grounds LLM responses in retrieved documents, reducing hallucination and enabling knowledge updates without retraining. The core pattern: embed query → retrieve relevant chunks → prepend to context → generate. Real production systems add chunking strategy, reranking, hybrid search, and evaluation layers that are the meat of  questions.
 
 ## Intuition
 LLMs have knowledge frozen at training time and hallucinate when asked about specific facts, recent events, or private data. Instead of retraining (expensive), RAG retrieves relevant documents at query time and inserts them into the context window. The LLM now has access to fresh, specific knowledge for each query.
@@ -82,7 +82,7 @@ Generate a hypothetical answer to the query, embed that, then retrieve using the
 | Transparent — can cite sources | Hard to handle multi-hop reasoning |
 | Cost-effective vs. fine-tuning for knowledge | Embedding models may miss semantic nuances |
 
-## Interview Angles
+##  Angles
 
 **What interviewers are really testing (especially at finance companies):**
 - Can you design a RAG pipeline end-to-end?

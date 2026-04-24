@@ -1,11 +1,11 @@
 ---
-title: "RL & Alignment Interview Q&A"
-tags: [interview-qa, alignment, fine-tuning, rl]
+title: "RL & Alignment  Q&A"
+tags: [-qa, alignment, fine-tuning, rl]
 related: ["[[rlhf]]", "[[ppo]]", "[[dpo]]", "[[grpo]]", "[[lora-qlora]]"]
 last_updated: 2026-04-22
 ---
 
-# RL & Alignment Interview Q&A
+# RL & Alignment  Q&A
 
 ---
 

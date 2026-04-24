@@ -1,4 +1,4 @@
-# AI Engineer Interview Wiki — Index
+# AI Engineer  Wiki — Index
 
 > Last audited: 2026-04-22 | Pages: 34 | Sources: training-knowledge | Stubs: 0
 
@@ -37,7 +37,7 @@
 - [[fidelity]] — Financial NLP, RAG for advice, portfolio ML ✅
 - [[exxon]] — Predictive maintenance, process optimization, industrial AI ✅
 
-## Interview Q&A
+##  Q&A
 - [[transformers-qa]] — L1/L2/L3 questions on attention, KV cache, Flash Attention ✅
 - [[rl-qa]] — RLHF stages, DPO derivation, GRPO, QLoRA deep dives ✅
 - [[rag-qa]] — RAG pipeline, hybrid search, HyDE, evaluation, system design ✅

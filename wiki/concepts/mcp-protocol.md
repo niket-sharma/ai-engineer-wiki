@@ -74,7 +74,7 @@ def search_database(query: str, table: str) -> str:
 | Supports resource reading, not just tool calling | Security model is not yet fully standardized |
 | Growing ecosystem (100s of MCP servers on GitHub) | Debugging distributed MCP servers is non-trivial |
 
-## Interview Angles
+##  Angles
 
 **What interviewers are really testing:**
 - Are you aware of MCP as an emerging standard?

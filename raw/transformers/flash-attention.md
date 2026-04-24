@@ -150,7 +150,7 @@ pip install flash-attn --no-build-isolation
 
 ---
 
-## Interview-Relevant Insights
+## -Relevant Insights
 
 **The single most important point:** FlashAttention does NOT change the mathematical output of attention. It's a systems-level optimization (kernel fusion + IO awareness), not an algorithmic approximation.
 
@@ -166,7 +166,7 @@ pip install flash-attn --no-build-isolation
 
 ---
 
-## Common Interview Questions From This Paper
+## Common  Questions From This Paper
 
 - "What problem does Flash Attention solve? Is it about compute or memory?"
 - "How does the online softmax trick work? Why doesn't it need to store the full attention matrix?"

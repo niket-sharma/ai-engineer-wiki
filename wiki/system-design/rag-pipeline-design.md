@@ -151,7 +151,7 @@ Context:
 | Reranking | Skip | Cross-encoder | Include if precision matters; skip if latency < 1s |
 | LLM | GPT-4 | Claude Sonnet | Claude Sonnet best cost/quality for RAG |
 
-## Interview Angles
+##  Angles
 
 **Draw the architecture on a whiteboard:**
 Start with the two pipelines clearly separated. Explain each component. Then discuss what breaks at scale.

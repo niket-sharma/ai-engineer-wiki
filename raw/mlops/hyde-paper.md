@@ -172,7 +172,7 @@ retriever = vectorstore.as_retriever()
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "What is HyDE and why does it outperform standard dense retrieval in zero-shot settings?"
 - "What is the distributional shift problem that HyDE solves?"

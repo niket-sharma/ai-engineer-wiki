@@ -197,7 +197,7 @@ At decode step (autoregressive generation, batch size B, sequence length T):
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "What is GQA and why was it introduced?"
 - "How does GQA reduce KV cache memory? Give a concrete example with Llama 3."

@@ -1,6 +1,6 @@
 ---
 title: "MassMutual"
-aliases: ["MassMutual AI", "MassMutual interview prep", "Massachusetts Mutual"]
+aliases: ["MassMutual AI", "MassMutual  prep", "Massachusetts Mutual"]
 tags: [company, insurance, actuarial, risk, timeseries]
 related: ["[[ml-platform]]", "[[feature-store]]"]
 sources: ["training-knowledge", "public-job-postings"]
@@ -27,7 +27,7 @@ AI roles here are often closer to "applied research" than at banks — more mode
 - **Data**: Redshift, S3
 - **Smaller scale than banks** — may use simpler tooling
 
-## Interview Style
+##  Style
 - **Strong ML theory depth** expected — actuarial background values statistical rigor
 - **Statistics/probability**: expect questions on survival analysis, GLMs, Bayesian methods
 - **Coding**: LeetCode medium, sometimes statistics/simulation coding

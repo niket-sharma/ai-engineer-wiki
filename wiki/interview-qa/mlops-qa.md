@@ -1,11 +1,11 @@
 ---
-title: "MLOps Interview Q&A"
-tags: [interview-qa, mlops]
+title: "MLOps  Q&A"
+tags: [-qa, mlops]
 related: ["[[llm-serving-infra]]", "[[ml-platform]]", "[[feature-store]]"]
 last_updated: 2026-04-22
 ---
 
-# MLOps Interview Q&A
+# MLOps  Q&A
 
 ---
 

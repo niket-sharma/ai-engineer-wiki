@@ -259,7 +259,7 @@ BPE balances: single characters (handle any input) + common words/subwords (effi
 
 ---
 
-## Interview-Relevant Insights From This Lecture
+## -Relevant Insights From This Lecture
 
 1. **Attention = soft lookup in a graph** — Karpathy's framing is the clearest explanation anywhere
 2. **`-inf` mask before softmax → causal attention**: know how to implement this
@@ -274,7 +274,7 @@ BPE balances: single characters (handle any input) + common words/subwords (effi
 
 ---
 
-## Common Interview Questions Sourced From This Lecture
+## Common  Questions Sourced From This Lecture
 
 - "Walk me through implementing scaled dot-product attention in PyTorch."
 - "Why do we use pre-norm instead of post-norm in modern transformers?"

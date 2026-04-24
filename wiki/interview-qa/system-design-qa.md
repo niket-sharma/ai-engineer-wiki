@@ -1,11 +1,11 @@
 ---
-title: "System Design Interview Q&A"
-tags: [interview-qa, system-design]
+title: "System Design  Q&A"
+tags: [-qa, system-design]
 related: ["[[rag-pipeline-design]]", "[[llm-serving-infra]]", "[[ml-platform]]", "[[feature-store]]"]
 last_updated: 2026-04-22
 ---
 
-# System Design Interview Q&A
+# System Design  Q&A
 
 ---
 

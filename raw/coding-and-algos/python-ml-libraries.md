@@ -176,7 +176,7 @@ df['year'] = df['date'].dt.year
 df['month'] = df['date'].dt.month
 ```
 
-### Common Interview Data Tasks
+### Common  Data Tasks
 
 ```python
 # Moving average (time series)
@@ -350,7 +350,7 @@ feature_importance = model.feature_importances_
 
 ---
 
-## Common Interview Coding Exercises
+## Common  Coding Exercises
 
 ```python
 # Implement attention from scratch

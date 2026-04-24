@@ -253,7 +253,7 @@ ECE = Σ_m (|B_m| / n) · |acc(B_m) - conf(B_m)|
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "Explain precision and recall. When would you optimize for each?"
 - "Why is accuracy a bad metric for fraud detection?"

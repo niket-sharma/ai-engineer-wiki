@@ -71,7 +71,7 @@ Where:
 | Easy to implement with standard SFT code | Online DPO (best of both) adds back complexity |
 | Competitive quality on instruction following | PPO still preferred for complex reasoning/RL tasks |
 
-## Interview Angles
+##  Angles
 
 **What interviewers are really testing:**
 - Can you derive or explain the DPO loss at a conceptual level?

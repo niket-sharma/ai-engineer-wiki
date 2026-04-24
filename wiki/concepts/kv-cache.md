@@ -63,7 +63,7 @@ Rather than allocating a contiguous block of GPU memory for the full max sequenc
 | Essential for real-time generation | Must be carefully managed in multi-request serving |
 | Enables long-context generation | Paged/quantized KV cache adds implementation complexity |
 
-## Interview Angles
+##  Angles
 
 **What interviewers are really testing:**
 - Do you understand *why* only K and V are cached (not Q)?

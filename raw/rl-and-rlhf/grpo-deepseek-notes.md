@@ -200,7 +200,7 @@ This shows: **CoT reasoning can be distilled** — you don't need to run RL on e
 
 ---
 
-## Interview-Relevant Insights
+## -Relevant Insights
 
 **The key GRPO question:** "What does GRPO use instead of a value model?"
 → Group statistics (mean and std of rewards within a prompt's rollout group). The group mean serves as the baseline, analogous to V(x) in PPO.
@@ -208,7 +208,7 @@ This shows: **CoT reasoning can be distilled** — you don't need to run RL on e
 **Why verifiable rewards make GRPO especially effective:**
 → Binary correct/incorrect signal is unambiguous. The model can't "hack" a deterministic verifier. The reward is inherently calibrated (0 or 1). Perfect for GRPO's group normalization.
 
-**The "aha moment" as an interview talking point:**
+**The "aha moment" as an  talking point:**
 This is a great example of emergent behavior from RL. The model learned to be uncertain, to backtrack, to use extended thinking — none of which was in the training signal. Shows the power of online RL vs. behavioral cloning.
 
 **Why DeepSeek-R1 matters for the field:**
@@ -218,7 +218,7 @@ This is a great example of emergent behavior from RL. The model learned to be un
 
 ---
 
-## Common Interview Questions From This Paper
+## Common  Questions From This Paper
 
 - "What is GRPO and how does it differ from PPO?"
 - "Why does removing the value model save memory?"

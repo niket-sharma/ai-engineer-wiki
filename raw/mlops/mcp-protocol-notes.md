@@ -309,7 +309,7 @@ await server.connect(transport);
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "What is MCP and why was it created? What problem does it solve?"
 - "Explain the difference between Tools, Resources, and Prompts in MCP."

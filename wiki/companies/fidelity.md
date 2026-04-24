@@ -1,6 +1,6 @@
 ---
 title: "Fidelity"
-aliases: ["Fidelity AI", "Fidelity interview prep", "Fidelity Investments", "FMR"]
+aliases: ["Fidelity AI", "Fidelity  prep", "Fidelity Investments", "FMR"]
 tags: [company, finance, nlp, portfolio, rag]
 related: ["[[rag-systems]]", "[[langgraph-agents]]", "[[vector-databases]]"]
 sources: ["training-knowledge", "public-job-postings"]
@@ -28,7 +28,7 @@ Fidelity has a strong emphasis on responsible AI given regulatory environment.
 - **LLMs**: Azure OpenAI (GPT-4), internal fine-tuned models for finance
 - **Search**: Elasticsearch + vector DB (Pinecone or internal)
 
-## Interview Style
+##  Style
 - **Coding**: LeetCode medium, sometimes data manipulation (pandas heavy)
 - **ML design**: RAG system for financial Q&A, or NLP pipeline for document analysis
 - **Domain knowledge**: expect questions about financial NLP, portfolio ML

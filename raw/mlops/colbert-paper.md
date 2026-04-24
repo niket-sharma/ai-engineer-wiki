@@ -201,7 +201,7 @@ dspy.settings.configure(rm=colbert)
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "Explain ColBERT's late interaction mechanism."
 - "What is the MaxSim scoring formula and why does it capture meaning better than dot product of single vectors?"

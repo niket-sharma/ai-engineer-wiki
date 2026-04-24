@@ -208,7 +208,7 @@ meta_model.fit(oof_preds, y)
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "Explain the difference between bagging and boosting."
 - "Why do random forests subsample features at each split?"

@@ -14,7 +14,7 @@ While RLHF has proven effective at aligning LLMs with human preferences, it is c
 
 ---
 
-## The Core Derivation (The Math Interview Questions Are About)
+## The Core Derivation (The Math  Questions Are About)
 
 ### RLHF Objective (Review)
 
@@ -193,7 +193,7 @@ If the preference data was collected from a weak model, and DPO trains a stronge
 
 ---
 
-## Interview-Relevant Insights
+## -Relevant Insights
 
 **"DPO's language model is secretly a reward model":**
 The paper's title refers to: after training, you can extract an implicit reward from DPO's policy: `r_DPO(x,y) = β · log[π_θ(y|x)/π_ref(y|x)]`. This implicit RM corresponds exactly to the optimal RM for the RLHF objective.
@@ -205,7 +205,7 @@ This is the key mathematical trick. Z(x) depends only on x (not on y_w or y_l), 
 
 ---
 
-## Common Interview Questions From This Paper
+## Common  Questions From This Paper
 
 - "How does DPO avoid training a reward model? Walk me through the derivation."
 - "What does the β parameter control in DPO?"

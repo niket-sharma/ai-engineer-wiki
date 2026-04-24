@@ -96,7 +96,7 @@ llm_with_tools = llm.bind_tools(tools)
 | Streaming built-in | Debugging multi-agent systems is hard |
 | Works with any LLM that supports tool/function calling | Long-running agents can drift from original intent |
 
-## Interview Angles
+##  Angles
 
 **What interviewers are really testing:**
 - Do you understand the ReAct pattern and why agents need it?

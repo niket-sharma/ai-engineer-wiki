@@ -84,7 +84,7 @@ Every dataset needs:
 
 ## Layer 2: Feature Store
 
-The most interview-questioned component. See [[feature-store]] for full detail.
+The most -questioned component. See [[feature-store]] for full detail.
 
 **Key concept: training-serving skew prevention**
 
@@ -218,7 +218,7 @@ def psi(expected, actual, buckets=10):
 
 ---
 
-## Interview Angles
+##  Angles
 
 - "How do you prevent training-serving skew?" → Feature store with shared computation
 - "How do you handle model rollback?" → Blue-green deployment + model registry versioning

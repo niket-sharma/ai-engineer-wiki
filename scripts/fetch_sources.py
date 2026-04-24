@@ -231,7 +231,7 @@ def fetch_arxiv(source: dict, verbose: bool = True) -> str:
 
         ## Figures & Tables (to be filled during ingest)
 
-        ## Interview-Relevant Insights (to be filled during ingest)
+        ## -Relevant Insights (to be filled during ingest)
 
         ## Notes
 
@@ -260,7 +260,7 @@ def _fallback_arxiv(source: dict) -> str:
 
         ## Key Contributions
 
-        ## Interview-Relevant Insights
+        ## -Relevant Insights
 
         _Fetched {datetime.now().strftime('%Y-%m-%d')}_
     """)

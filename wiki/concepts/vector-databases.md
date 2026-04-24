@@ -12,7 +12,7 @@ status: current
 # Vector Databases
 
 ## TL;DR
-Vector databases store high-dimensional embeddings and enable approximate nearest-neighbor (ANN) search — find the K vectors most similar to a query vector in milliseconds across millions of documents. They're the retrieval backbone for RAG, semantic search, and recommendation systems. Key interview topics: HNSW vs IVF-PQ, filtering, hybrid search, managed vs self-hosted.
+Vector databases store high-dimensional embeddings and enable approximate nearest-neighbor (ANN) search — find the K vectors most similar to a query vector in milliseconds across millions of documents. They're the retrieval backbone for RAG, semantic search, and recommendation systems. Key  topics: HNSW vs IVF-PQ, filtering, hybrid search, managed vs self-hosted.
 
 ## Intuition
 Embedding models map text/images/etc. to dense vectors where semantic similarity ≈ geometric proximity. Finding exact nearest neighbors in high-dimensional space is O(n·d) per query — too slow for large datasets. ANN algorithms trade a small amount of accuracy for orders-of-magnitude speed improvement.
@@ -80,7 +80,7 @@ RRF is rank-based — doesn't require score normalization. k=60 is standard.
 | Hybrid search (dense + sparse) in one system | Consistency/ACID not a priority (vs RDBMS) |
 | Cloud-managed options for easy scaling | Filtering at scale is still complex |
 
-## Interview Angles
+##  Angles
 
 **What interviewers are really testing:**
 - Do you understand HNSW vs IVF-PQ tradeoffs?

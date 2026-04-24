@@ -1,20 +1,20 @@
 ---
-name: ai-engineer-interview-wiki
+name: ai-engineer--wiki
 description: >
-  Build and maintain a living, compounding AI Engineer interview knowledge base
+  Build and maintain a living, compounding AI Engineer  knowledge base
   using the LLM Wiki pattern. Use this skill whenever the user wants to ingest
   study material (papers, notes, blog posts, transcripts), update wiki pages,
   query the knowledge base, audit for contradictions, or run any operation on
-  the AI Engineer Interview Wiki. Triggers on phrases like "add to wiki",
+  the AI Engineer  Wiki. Triggers on phrases like "add to wiki",
   "update the wiki", "ingest this", "what does the wiki say about", "audit the
-  wiki", "add a source", "compile notes", "interview prep wiki", or any mention
-  of the ai-engineer-interview-wiki project.
+  wiki", "add a source", "compile notes", " prep wiki", or any mention
+  of the ai-engineer--wiki project.
 ---
 
-# AI Engineer Interview Wiki
+# AI Engineer  Wiki
 
 A **living, compounding knowledge base** for AI Engineer / Senior Data Scientist
-interview preparation — built on Andrej Karpathy's LLM Wiki pattern.
+ preparation — built on Andrej Karpathy's LLM Wiki pattern.
 
 Instead of re-reading raw sources at query time (RAG-style), you compile them
 **once** into structured, interlinked Markdown pages. The wiki grows richer with
@@ -39,7 +39,7 @@ every source you add. Query time is fast because synthesis has already happened.
 ## 2. Repository Layout
 
 ```
-ai-engineer-interview-wiki/
+ai-engineer--wiki/
 │
 ├── raw/                          # Immutable source material (never edited)
 │   ├── transformers/
@@ -86,7 +86,7 @@ ai-engineer-interview-wiki/
 │   │   ├── exxon.md
 │   │   └── ...
 │   │
-│   ├── interview-qa/             # Synthesized Q&A pairs
+│   ├── -qa/             # Synthesized Q&A pairs
 │   │   ├── transformers-qa.md
 │   │   ├── rl-qa.md
 │   │   ├── mlops-qa.md
@@ -154,7 +154,7 @@ the corresponding steps precisely.
    - Core concepts defined or explained
    - Key claims, formulas, algorithms
    - Comparisons to other methods
-   - Interview-relevant insights (anything that answers "why", "when", "tradeoffs")
+   - -relevant insights (anything that answers "why", "when", "tradeoffs")
 
 4. **Identify affected wiki pages.** Check `wiki/index.md` for existing pages
    that overlap with the source content.
@@ -170,7 +170,7 @@ the corresponding steps precisely.
 6. **Create new pages.** For concepts not yet in the wiki:
    - Create `wiki/concepts/<slug>.md` with full frontmatter
    - Write an encyclopedia-style page: definition → intuition → math/detail →
-     variants → tradeoffs → interview angles
+     variants → tradeoffs →  angles
    - Add wiki-links `[[like-this]]` to all related concepts
 
 7. **Update index.** Add new pages to `wiki/index.md` under the correct section.
@@ -235,10 +235,10 @@ the corresponding steps precisely.
 
 ---
 
-### OP-4: GENERATE — Create interview Q&A
+### OP-4: GENERATE — Create  Q&A
 
 **Trigger phrases:** "generate questions", "make a Q&A for", "create flashcards",
-"give me interview questions on", "prep me for X"
+"give me  questions on", "prep me for X"
 
 **Steps:**
 
@@ -248,7 +248,7 @@ the corresponding steps precisely.
    - **L2 — Technical:** "Walk me through the math/algorithm of X."
    - **L3 — Applied:** "How would you use X in a production system? What are
      the tradeoffs?"
-3. Save output to `wiki/interview-qa/<topic>-qa.md`.
+3. Save output to `wiki/-qa/<topic>-qa.md`.
 4. Tag each question with `[L1]`, `[L2]`, or `[L3]`.
 5. Include a "Common Follow-ups" section per question.
 
@@ -265,7 +265,7 @@ the corresponding steps precisely.
 2. Populate / update sections:
    - **Role Focus:** What AI/ML problems does this company care about?
    - **Tech Stack Signals:** Known tools, frameworks, cloud providers
-   - **Interview Style:** LeetCode? System design? Case study? ML theory?
+   - ** Style:** LeetCode? System design? Case study? ML theory?
    - **Domain-Specific Concepts:** (e.g., for Capital One: fraud detection,
      credit risk, NLP on financial text)
    - **Likely Questions:** 5–10 predicted technical questions
@@ -323,7 +323,7 @@ How this concept evolved or branches (e.g., MHA → MQA → GQA).
 |---|---|
 | ... | ... |
 
-## Interview Angles
+##  Angles
 - What interviewers are really testing when they ask about this
 - Common follow-up questions
 - Gotchas / misconceptions to avoid
@@ -364,7 +364,7 @@ When starting from a fresh repo, execute this sequence:
 ```
 Step 1: Create directory structure
   mkdir -p raw/{transformers,rl-and-rlhf,mlops,system-design,coding-and-algos,statistics-and-ml,company-specific,misc}
-  mkdir -p wiki/{concepts,system-design,companies,interview-qa,cheatsheets}
+  mkdir -p wiki/{concepts,system-design,companies,-qa,cheatsheets}
 
 Step 2: Create wiki/index.md
   Use the Index Template (see Section 8).
@@ -385,7 +385,7 @@ Step 5: Run first INGEST
 ## 8. Index Template (`wiki/index.md`)
 
 ```markdown
-# AI Engineer Interview Wiki — Index
+# AI Engineer  Wiki — Index
 
 > Last audited: YYYY-MM-DD | Pages: N | Sources: N | Stubs: N
 
@@ -423,7 +423,7 @@ Step 5: Run first INGEST
 - [[fidelity]]
 - [[exxon]]
 
-## Interview Q&A
+##  Q&A
 - [[transformers-qa]]
 - [[rl-qa]]
 - [[mlops-qa]]
@@ -448,8 +448,8 @@ The LLM MUST follow these rules on every operation:
 3. **Always log every operation** to `wiki/log.md`.
 4. **Use wiki-links `[[page-name]]`** for all cross-references — never bare text.
 5. **Flag contradictions** with `> ⚠️ CONTRADICTION:` — never silently overwrite.
-6. **Interview-first framing.** Every concept page must have an "Interview Angles"
-   section. Knowledge without interview relevance is incomplete.
+6. **-first framing.** Every concept page must have an " Angles"
+   section. Knowledge without  relevance is incomplete.
 7. **Cite sources** in frontmatter AND in page body where specific claims come
    from a specific source.
 8. **Don't hallucinate.** If a concept isn't in the wiki or the provided source,
@@ -465,27 +465,27 @@ The LLM MUST follow these rules on every operation:
 2. Extract: GPT architecture, attention implementation, training loop, BPE
 3. Update: [[transformer-architecture]], [[attention-mechanism]], [[kv-cache]]
 4. Create new page if needed: [[byte-pair-encoding]]
-5. Generate Q&A: wiki/interview-qa/transformers-qa.md
+5. Generate Q&A: wiki/-qa/transformers-qa.md
 6. Log the operation
 ```
 
 ### "Quiz me on attention mechanisms"
 ```
 1. Read wiki/concepts/attention-mechanism.md
-2. Pull L1/L2/L3 questions from wiki/interview-qa/transformers-qa.md
+2. Pull L1/L2/L3 questions from wiki/-qa/transformers-qa.md
 3. Present questions one at a time, wait for answer, give feedback
 4. Cite wiki pages in feedback: "According to [[kv-cache]], the reason is..."
 ```
 
-### "Prep me for my Capital One interview next week"
+### "Prep me for my Capital One  next week"
 ```
 1. Read wiki/companies/capital-one.md
 2. Read relevant concept pages (fraud, NLP, system design)
 3. Generate a tailored study plan:
    - Day 1-2: [[rag-systems]], [[vector-databases]]
    - Day 3-4: [[system-design/rag-pipeline-design]]
-   - Day 5: [[interview-qa/system-design-qa]]
-   - Day 6: Mock interview from [[companies/capital-one]] likely questions
+   - Day 5: [[-qa/system-design-qa]]
+   - Day 6: Mock  from [[companies/capital-one]] likely questions
    - Day 7: Review [[cheatsheets/]]
 ```
 
@@ -496,10 +496,10 @@ The LLM MUST follow these rules on every operation:
 When initializing the repo, create `README.md` with:
 
 ```markdown
-# AI Engineer Interview Wiki
+# AI Engineer  Wiki
 
 A living, compounding knowledge base for AI Engineer and Senior Data Scientist
-interview preparation — built on Andrej Karpathy's LLM Wiki pattern.
+ preparation — built on Andrej Karpathy's LLM Wiki pattern.
 
 ## How it works
 Raw sources go in `raw/`. An LLM agent compiles them into structured,
@@ -516,7 +516,7 @@ source added. Query the wiki instead of re-reading raw sources.
 - **INGEST:** Add a new source → "ingest raw/transformers/paper.md"
 - **QUERY:** Ask a question → "what does the wiki say about KV cache?"
 - **AUDIT:** Health check → "audit the wiki"
-- **GENERATE:** Make Q&A → "generate interview questions on LoRA"
+- **GENERATE:** Make Q&A → "generate  questions on LoRA"
 - **COMPANY:** Company prep → "prep me for Capital One"
 - **CHEATSHEET:** Quick ref → "make a cheatsheet for positional encoding"
 
@@ -533,5 +533,5 @@ System Design · Statistics · Algorithms · Company-Specific Prep
 
 ---
 
-*SKILL.md version 1.0 — AI Engineer Interview Wiki*  
+*SKILL.md version 1.0 — AI Engineer  Wiki*  
 *Designed for use with Claude Code. Compatible with Cursor and other agent frameworks.*

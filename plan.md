@@ -1,4 +1,4 @@
-# AI Engineer Interview Wiki — Build Plan
+# AI Engineer  Wiki — Build Plan
 
 > A step-by-step implementation guide for building the wiki from scratch using
 > Claude Code. Follow phases in order. Each phase is self-contained and
@@ -10,7 +10,7 @@
 
 | Item | Detail |
 |---|---|
-| Project name | ai-engineer-interview-wiki |
+| Project name | ai-engineer--wiki |
 | Primary tool | Claude Code (claude CLI) |
 | Storage format | Plain Markdown (.md) |
 | Viewer (optional) | Obsidian |
@@ -38,8 +38,8 @@ Before starting, ensure you have:
 
 ```bash
 cd ~/projects
-mkdir ai-engineer-interview-wiki
-cd ai-engineer-interview-wiki
+mkdir ai-engineer--wiki
+cd ai-engineer--wiki
 git init
 ```
 
@@ -110,7 +110,7 @@ transformer + RL + RAG concepts fully compiled before any interviews.
 
 ### 1.1 Priority Source List
 
-Ingest in this order (highest interview ROI first):
+Ingest in this order (highest  ROI first):
 
 **Batch A — Transformers (Day 1–2)**
 
@@ -157,7 +157,7 @@ For each source in the list above:
 
 3. Review the pages Claude Code creates or updates. Check:
    - Frontmatter is complete
-   - "Interview Angles" section is substantive
+   - " Angles" section is substantive
    - Wiki-links `[[like-this]]` are used
    - Log entry was added to `wiki/log.md`
 
@@ -185,7 +185,7 @@ Use the gap list to decide what to ingest next.
 
 ---
 
-## Phase 2 — Interview Q&A Generation (Week 1–2, ~2 hours)
+## Phase 2 —  Q&A Generation (Week 1–2, ~2 hours)
 
 Once core concept pages exist, generate the Q&A layer.
 
@@ -194,29 +194,29 @@ Once core concept pages exist, generate the Q&A layer.
 Run each of the following in Claude Code:
 
 ```
-"Generate interview Q&A for transformers. Cover all concept pages in
+"Generate  Q&A for transformers. Cover all concept pages in
 wiki/concepts/ tagged [transformers]. Create L1/L2/L3 questions.
-Save to wiki/interview-qa/transformers-qa.md"
+Save to wiki/-qa/transformers-qa.md"
 
-"Generate interview Q&A for RL and alignment (RLHF, PPO, DPO, GRPO, LoRA).
-Save to wiki/interview-qa/rl-qa.md"
+"Generate  Q&A for RL and alignment (RLHF, PPO, DPO, GRPO, LoRA).
+Save to wiki/-qa/rl-qa.md"
 
-"Generate interview Q&A for RAG systems, vector databases, and reranking.
-Save to wiki/interview-qa/rag-qa.md"
+"Generate  Q&A for RAG systems, vector databases, and reranking.
+Save to wiki/-qa/rag-qa.md"
 
-"Generate interview Q&A for LLM agents, LangGraph, and MCP protocol.
-Save to wiki/interview-qa/agents-qa.md"
+"Generate  Q&A for LLM agents, LangGraph, and MCP protocol.
+Save to wiki/-qa/agents-qa.md"
 
-"Generate interview Q&A for MLOps: serving, quantization, monitoring, A/B
-testing. Save to wiki/interview-qa/mlops-qa.md"
+"Generate  Q&A for MLOps: serving, quantization, monitoring, A/B
+testing. Save to wiki/-qa/mlops-qa.md"
 
-"Generate system design interview Q&A. Include full design walkthroughs for:
+"Generate system design  Q&A. Include full design walkthroughs for:
 RAG pipeline, LLM serving infrastructure, ML feature store, recommendation
-system. Save to wiki/interview-qa/system-design-qa.md"
+system. Save to wiki/-qa/system-design-qa.md"
 
-"Generate behavioral interview Q&A. Include leadership principles, conflict
+"Generate behavioral  Q&A. Include leadership principles, conflict
 resolution, project failure, cross-functional collaboration.
-Save to wiki/interview-qa/behavioral-qa.md"
+Save to wiki/-qa/behavioral-qa.md"
 ```
 
 ### 2.2 Review and enrich Q&A pages
@@ -244,7 +244,7 @@ Save to wiki/cheatsheets/acronyms.md"
 ```
 
 **Exit criteria for Phase 2:**
-- [ ] 7 Q&A files exist in `wiki/interview-qa/`
+- [ ] 7 Q&A files exist in `wiki/-qa/`
 - [ ] Each Q&A file has L1, L2, and L3 questions
 - [ ] Weak areas are flagged with 🔴
 - [ ] 4 cheatsheets exist in `wiki/cheatsheets/`
@@ -257,7 +257,7 @@ Save to wiki/cheatsheets/acronyms.md"
 
 For each company, gather public signals before asking Claude Code to compile:
 - Job description (paste into `raw/company-specific/<company>-jd.md`)
-- Glassdoor/Blind interview reports (paste summaries)
+- Glassdoor/Blind  reports (paste summaries)
 - Any known tech blog posts from their engineering team
 - LinkedIn profiles of interviewers (if known)
 
@@ -286,10 +286,10 @@ Save to wiki/companies/exxon.md"
 
 ### 3.3 Generate company-specific study plans
 
-For each upcoming interview, say:
+For each upcoming , say:
 
 ```
-"Generate a 7-day study plan for my Capital One AI Engineer interview.
+"Generate a 7-day study plan for my Capital One AI Engineer .
 Use wiki/companies/capital-one.md as the guide. Reference specific wiki
 pages for each day. Output a structured day-by-day plan."
 ```
@@ -297,7 +297,7 @@ pages for each day. Output a structured day-by-day plan."
 **Exit criteria for Phase 3:**
 - [ ] 4 company pages exist, each with all sections populated
 - [ ] Each company page cross-links to relevant concept pages
-- [ ] At least one 7-day study plan generated per upcoming interview
+- [ ] At least one 7-day study plan generated per upcoming 
 
 ---
 
@@ -315,11 +315,11 @@ Review the report. Prioritize what to fix.
 
 **As you study:**
 - Any time you read something new → INGEST it
-- Any time you get a question wrong in mock interview → note it, ask Claude
+- Any time you get a question wrong in mock  → note it, ask Claude
   Code to strengthen that wiki page
 - Any time you read a conflicting claim → let the wiki flag it, then resolve
 
-**After a real interview:**
+**After a real :**
 ```
 "I just interviewed at [Company]. These topics came up: [list].
 Update wiki/companies/[company].md with this intel. Also flag any wiki
@@ -329,10 +329,10 @@ pages that need strengthening based on questions I struggled with: [list]"
 ### Adding new sources over time
 
 Good ongoing source types to ingest:
-- Papers you read for interview prep
+- Papers you read for  prep
 - Blog posts (Lilian Weng, Hugging Face, OpenAI, Anthropic)
 - Conference talk transcripts (NeurIPS, ICML)
-- Mock interview feedback
+- Mock  feedback
 - Leetcode editorial notes for patterns you struggle with
 - Your own implementation notes (e.g., from building nanoGPT)
 
@@ -346,7 +346,7 @@ Especially useful for seeing knowledge gaps.
 ### 5.1 Open vault
 
 ```bash
-# In Obsidian: Open folder as vault → select ai-engineer-interview-wiki/
+# In Obsidian: Open folder as vault → select ai-engineer--wiki/
 ```
 
 ### 5.2 Recommended plugins
@@ -397,7 +397,7 @@ mkdocs gh-deploy
 ### Option B — Keep private, reference in resume/portfolio
 
 Even a private wiki is valuable to mention:
-> *"I maintain a self-updating AI interview knowledge base using the LLM Wiki
+> *"I maintain a self-updating AI  knowledge base using the LLM Wiki
 > pattern — 50+ interlinked concept pages compiled from primary sources."*
 
 ---
@@ -435,9 +435,9 @@ take to improve wiki health.
 
 ### Generate Q&A
 ```
-Generate interview Q&A for <topic> following OP-4 from SKILL.md.
+Generate  Q&A for <topic> following OP-4 from SKILL.md.
 Cover all concept pages tagged [<topic>]. Include L1, L2, and L3 questions
-with common follow-ups. Save to wiki/interview-qa/<topic>-qa.md.
+with common follow-ups. Save to wiki/-qa/<topic>-qa.md.
 ```
 
 ### Company Prep
@@ -447,16 +447,16 @@ Use sources in raw/company-specific/<company>*/. Cross-link all relevant
 concept pages. Save to wiki/companies/<company>.md.
 ```
 
-### Mock Interview
+### Mock 
 ```
-Quiz me on <topic>. Use wiki/interview-qa/<topic>-qa.md.
+Quiz me on <topic>. Use wiki/-qa/<topic>-qa.md.
 Ask one question at a time. Wait for my answer. Give feedback citing
 specific wiki pages. Start with an L2 question.
 ```
 
 ### Study Plan
 ```
-Generate a <N>-day study plan for my <Company> interview on <date>.
+Generate a <N>-day study plan for my <Company>  on <date>.
 Use wiki/companies/<company>.md to understand what to prioritize.
 Map each day to specific wiki pages and Q&A sets.
 ```
@@ -473,7 +473,7 @@ Map each day to specific wiki pages and Q&A sets.
 | Phase 2: All Q&A files generated | End of Week 2 | [ ] |
 | Phase 2: Weak areas flagged | End of Week 2 | [ ] |
 | Phase 3: All company pages built | End of Week 2 | [ ] |
-| Phase 3: Study plans generated | Before each interview | [ ] |
+| Phase 3: Study plans generated | Before each  | [ ] |
 | Phase 4: Weekly audit habit | Ongoing | [ ] |
 | Wiki size: 30+ concept pages | Month 1 | [ ] |
 | Wiki size: 50+ concept pages | Month 2 | [ ] |
@@ -508,5 +508,5 @@ Map each day to specific wiki pages and Q&A sets.
 
 ---
 
-*BUILD_PLAN.md v1.0 — AI Engineer Interview Wiki*
+*BUILD_PLAN.md v1.0 — AI Engineer  Wiki*
 *Use alongside SKILL.md. Start at Phase 0 and work forward.*

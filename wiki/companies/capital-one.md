@@ -1,6 +1,6 @@
 ---
 title: "Capital One"
-aliases: ["Capital One AI", "Capital One interview prep"]
+aliases: ["Capital One AI", "Capital One  prep"]
 tags: [company, finance, fraud, nlp, aws]
 related: ["[[rag-systems]]", "[[rag-pipeline-design]]", "[[vector-databases]]", "[[llm-serving-infra]]"]
 sources: ["training-knowledge", "public-job-postings"]
@@ -30,8 +30,8 @@ Capital One is AWS-first — everything runs on AWS. Deep SageMaker usage. Stron
 - **LLMs**: internal deployments of GPT-4 (Azure OpenAI), some open-source via SageMaker
 - **Fraud graph**: likely Neo4j or custom graph processing
 
-## Interview Style
-Based on public signals and typical Capital One interview structure:
+##  Style
+Based on public signals and typical Capital One  structure:
 - **Phone screen**: 45 min ML theory + coding (LeetCode medium)
 - **Technical loop (virtual onsite)**: 
   - 2× coding (LeetCode medium-hard, focus on arrays/graphs/DP)
@@ -77,7 +77,7 @@ Based on public signals and typical Capital One interview structure:
 - Don't forget data privacy considerations — financial data has strict regulatory requirements
 - Don't underestimate the MLOps/infrastructure side — Capital One cares about production, not just notebooks
 
-## Study Plan for Capital One Interview
+## Study Plan for Capital One 
 
 **Day 1-2:** [[rag-systems]], [[vector-databases]] — design a RAG for financial Q&A
 **Day 3:** Fraud ML: imbalanced classification, precision-recall, feature engineering for transactions

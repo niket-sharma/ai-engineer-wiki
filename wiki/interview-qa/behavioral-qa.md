@@ -1,10 +1,10 @@
 ---
-title: "Behavioral Interview Q&A"
-tags: [interview-qa, behavioral]
+title: "Behavioral  Q&A"
+tags: [-qa, behavioral]
 last_updated: 2026-04-22
 ---
 
-# Behavioral Interview Q&A
+# Behavioral  Q&A
 
 > Use the STAR format: **Situation** → **Task** → **Action** → **Result**. Keep answers 2–3 minutes. Have 5–6 core stories that can be adapted to different questions.
 

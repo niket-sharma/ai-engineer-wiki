@@ -71,7 +71,7 @@ This produces exact softmax without ever having the full row in memory.
 | O(n) memory — enables very long contexts | Backward recomputation increases FLOPs slightly |
 | No quality loss (bit-identical on bfloat16) | Hardware-specific (optimized for A100/H100) |
 
-## Interview Angles
+##  Angles
 
 **What interviewers are really testing:**
 - Do you understand the GPU memory hierarchy and why IO matters?

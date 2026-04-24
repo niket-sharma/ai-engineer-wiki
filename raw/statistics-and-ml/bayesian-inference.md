@@ -240,7 +240,7 @@ print(f"P(treatment > control) = {p_treatment_better:.3f}")
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "What is Bayes' theorem and how does it apply to ML?"
 - "What is a conjugate prior and why is it useful?"

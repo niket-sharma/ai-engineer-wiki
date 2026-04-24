@@ -74,7 +74,7 @@ This is why PPO is memory-expensive: 4× model memory at minimum.
 | Online exploration generates new data | Complex training pipeline |
 | Works with any differentiable reward signal | Reward model can have its own biases/errors |
 
-## Interview Angles
+##  Angles
 
 **What interviewers are really testing:**
 - Can you describe all three RLHF stages and what each one does?

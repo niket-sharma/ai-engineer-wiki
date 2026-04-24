@@ -14,7 +14,7 @@ Append-only. Most recent entry at top.
 ### Phase 1 — Concept Population
 - All 15 concept pages populated with full technical content from training knowledge
 - Pages updated to `status: current`:
-  - [[attention-mechanism]] — MHA/MQA/GQA, complexity, interview angles
+  - [[attention-mechanism]] — MHA/MQA/GQA, complexity,  angles
   - [[transformer-architecture]] — GPT/BERT/T5, parameter counts, modern improvements
   - [[positional-encoding]] — Sinusoidal/RoPE/ALiBi/YaRN, length extrapolation
   - [[kv-cache]] — Memory math, GQA savings, paged attention, prefix caching

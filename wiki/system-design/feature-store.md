@@ -199,7 +199,7 @@ def process_transaction(event: dict):
 
 ---
 
-## Interview Angles
+##  Angles
 
 - **"What is training-serving skew and how does a feature store prevent it?"**
   Training-serving skew: features computed differently at training vs serving time. Feature store prevents it by sharing the same transformation logic: `get_historical_features()` and `get_online_features()` both invoke the same feature definitions.

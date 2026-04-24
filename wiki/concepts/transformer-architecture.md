@@ -76,7 +76,7 @@ Input → Token Embedding + Positional Encoding
 | Scales well with data and compute | Autoregressive generation is sequential |
 | Transfer learning via pretraining | Inference KV cache grows with context length |
 
-## Interview Angles
+##  Angles
 
 **What interviewers are really testing:**
 - Can you describe a transformer layer component-by-component?

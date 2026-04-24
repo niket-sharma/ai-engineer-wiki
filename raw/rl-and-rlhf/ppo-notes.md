@@ -175,7 +175,7 @@ for iteration = 1, 2, ...:
 
 ---
 
-## Interview-Relevant Insights
+## -Relevant Insights
 
 **"Why does PPO clip instead of constrain (like TRPO)?"**
 Clipping is a first-order approximation to the KL constraint. TRPO's constraint requires computing the Fisher information matrix — O(params²) in memory, requires conjugate gradient. PPO achieves similar stability with just one hyperparameter (ε) and first-order gradients.
@@ -188,7 +188,7 @@ No — it only provides a soft constraint. If the advantage is very large, the c
 
 ---
 
-## Common Interview Questions From This Paper
+## Common  Questions From This Paper
 
 - "How does PPO-clip work? Why clip instead of using a KL constraint?"
 - "What is GAE and what does λ control?"

@@ -1,11 +1,11 @@
 ---
-title: "Transformers Interview Q&A"
-tags: [interview-qa, transformers]
+title: "Transformers  Q&A"
+tags: [-qa, transformers]
 related: ["[[attention-mechanism]]", "[[transformer-architecture]]", "[[positional-encoding]]", "[[kv-cache]]", "[[flash-attention]]"]
 last_updated: 2026-04-22
 ---
 
-# Transformers Interview Q&A
+# Transformers  Q&A
 
 ---
 

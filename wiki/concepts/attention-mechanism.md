@@ -12,7 +12,7 @@ status: current
 # Attention Mechanism
 
 ## TL;DR
-Attention lets each token in a sequence selectively gather information from every other token by computing weighted sums of value vectors. It is the core operation that gives transformers their power and is the dominant interview topic for any AI engineer role.
+Attention lets each token in a sequence selectively gather information from every other token by computing weighted sums of value vectors. It is the core operation that gives transformers their power and is the dominant  topic for any AI engineer role.
 
 ## Intuition
 Think of attention as a soft lookup table. You have a **query** (what you're looking for), **keys** (labels on each item in a library), and **values** (the actual content of each item). The query scores against every key; those scores become weights; you take a weighted sum of the values. Every token does this simultaneously, and the model learns which keys to pay attention to.
@@ -61,7 +61,7 @@ head_i = Attention(Q·W_Qi, K·W_Ki, V·W_Vi)
 | Expressive: any token can attend to any token | KV cache grows linearly with context length |
 | Differentiable soft lookup | Large d_model → large weight matrices |
 
-## Interview Angles
+##  Angles
 
 **What interviewers are really testing:**
 - Can you derive the attention formula and explain each component?

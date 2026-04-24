@@ -75,7 +75,7 @@ score(q, d) = Σ_i max_j (q_i · d_j)
 | Can model query-document interaction deeply | Cross-encoder can't precompute → no offline speedup |
 | ColBERT: good tradeoff (mid-speed, mid-accuracy) | ColBERT requires storing token-level embeddings |
 
-## Interview Angles
+##  Angles
 
 **What interviewers are really testing:**
 - Do you understand the bi-encoder / cross-encoder distinction?

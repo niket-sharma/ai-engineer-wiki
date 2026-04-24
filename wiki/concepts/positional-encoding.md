@@ -72,7 +72,7 @@ Where m is a head-specific slope. Closer tokens get higher attention scores. No 
 | RoPE | Relative positions, extendable | Slightly more complex |
 | ALiBi | Best extrapolation | Position biases may not capture all patterns |
 
-## Interview Angles
+##  Angles
 
 **What interviewers are really testing:**
 - Do you understand WHY positional encoding is needed (permutation invariance of attention)?

@@ -214,7 +214,7 @@ Understanding ReAct is fundamental to understanding how production LLM agents wo
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "What is ReAct and how does it differ from chain-of-thought prompting?"
 - "Walk me through a ReAct trace for a multi-hop question."

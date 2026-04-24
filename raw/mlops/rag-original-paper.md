@@ -157,7 +157,7 @@ All subsequent RAG work (Advanced RAG, Self-RAG, CRAG, Agentic RAG) is building 
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "Describe the original RAG architecture."
 - "What's the difference between RAG-Sequence and RAG-Token?"

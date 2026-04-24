@@ -18,7 +18,7 @@ status: current
 O(n!) >> O(2^n) >> O(n³) >> O(n²) >> O(n log n) >> O(n) >> O(log n) >> O(1)
 ```
 
-**Practical limits for interview problems (1 second budget):**
+**Practical limits for  problems (1 second budget):**
 | Complexity | Max n |
 |---|---|
 | O(n!) | ≤ 11 |

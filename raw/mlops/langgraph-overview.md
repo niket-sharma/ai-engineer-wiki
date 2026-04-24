@@ -304,7 +304,7 @@ def retrieve_memories(state: AgentState) -> dict:
 
 ---
 
-## Interview-Relevant Insights
+## -Relevant Insights
 
 **When to use LangGraph over a simple LLM call:**
 - Multi-step tasks requiring loops (retry logic, iterative refinement)
@@ -321,7 +321,7 @@ def retrieve_memories(state: AgentState) -> dict:
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "What is LangGraph and how does it differ from LangChain chains?"
 - "Walk me through how you'd implement a ReAct agent in LangGraph."

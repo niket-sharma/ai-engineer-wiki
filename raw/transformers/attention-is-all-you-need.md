@@ -144,7 +144,7 @@ PE(pos, 2i+1) = cos(pos / 10000^(2i/d_model))
 
 ---
 
-## Interview-Relevant Insights
+## -Relevant Insights
 
 **Why did the Transformer replace RNNs?**
 - **Parallelization**: RNNs process tokens sequentially (each step depends on previous). Transformers process all positions simultaneously → much faster training.
@@ -162,7 +162,7 @@ PE(pos, 2i+1) = cos(pos / 10000^(2i/d_model))
 
 ---
 
-## Common Interview Questions Sourced From This Paper
+## Common  Questions Sourced From This Paper
 
 - "What is scaled dot-product attention? Why divide by sqrt(d_k)?"
 - "What is multi-head attention? Why not just use one large head?"

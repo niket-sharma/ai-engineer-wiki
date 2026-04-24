@@ -1,6 +1,6 @@
 # LeetCode Patterns for ML/AI Engineer Interviews
 
-**Sources:** Blind 75, NeetCode 150, Grokking the Coding Interview, personal interview reports from ML engineering interviews
+**Sources:** Blind 75, NeetCode 150, Grokking the Coding , personal  reports from ML engineering interviews
 
 ---
 
@@ -395,7 +395,7 @@ class MovingAverage:
 
 ---
 
-## Interview Strategy
+##  Strategy
 
 1. **Clarify first:** edge cases, input constraints, expected output format
 2. **Brute force first:** state the O(n²) or recursive solution verbally

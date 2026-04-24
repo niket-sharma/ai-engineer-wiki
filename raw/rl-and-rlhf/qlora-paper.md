@@ -183,7 +183,7 @@ From the paper's ablations:
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "What is QLoRA and how does it differ from LoRA?"
 - "Explain NF4 quantization. Why is it better than int4 for transformer weights?"

@@ -168,7 +168,7 @@ This framing is useful for Bayesian deep learning discussions.
 
 ---
 
-## Common Interview Questions
+## Common  Questions
 
 - "Explain the bias-variance tradeoff."
 - "What's the difference between L1 and L2 regularization? Why does L1 produce sparse solutions?"

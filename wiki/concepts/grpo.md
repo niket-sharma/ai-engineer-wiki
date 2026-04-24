@@ -70,7 +70,7 @@ Where:
 | Works well with verifiable rewards | Less suitable for complex reward signals without clear grouping |
 | Enabled SOTA reasoning (DeepSeek-R1) | G is a new hyperparameter to tune |
 
-## Interview Angles
+##  Angles
 
 **What interviewers are really testing:**
 - Do you know what GRPO is and why it's relevant (DeepSeek-R1)?

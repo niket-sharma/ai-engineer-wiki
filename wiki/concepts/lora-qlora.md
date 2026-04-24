@@ -78,7 +78,7 @@ h = Wx + BAx = Wx + ΔWx
 | Works with 4-bit base models (QLoRA) | QLoRA: bfloat16 compute with 4-bit storage → still needs GPU with large VRAM |
 | Multiple LoRA adapters can be swapped at serving time | Adapter merging can cause interference if not careful |
 
-## Interview Angles
+##  Angles
 
 **What interviewers are really testing:**
 - Can you explain the low-rank decomposition mathematically?
