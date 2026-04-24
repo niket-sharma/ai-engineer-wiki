@@ -1,7 +1,6 @@
-# AI Engineer Interview Wiki
+# AI Engineer Wiki
 
-A living, compounding knowledge base for AI Engineer and Senior Data Scientist
-interview preparation — built on Andrej Karpathy's LLM Wiki pattern.
+A living, compounding knowledge base for AI Engineer and Senior Data Scientist — built on Andrej Karpathy's LLM Wiki pattern.
 
 ## How it works
 Raw sources go in `raw/`. An LLM agent compiles them into structured,
