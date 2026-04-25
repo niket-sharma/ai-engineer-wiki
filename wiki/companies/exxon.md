@@ -4,7 +4,7 @@ aliases: ["ExxonMobil AI", "Exxon  prep", "ExxonMobil", "XOM"]
 tags: [company, energy, optimization, timeseries, industrial-ai]
 related: ["[[ml-platform]]"]
 sources: ["training-knowledge", "public-job-postings"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---

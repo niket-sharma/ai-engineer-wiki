@@ -4,7 +4,7 @@ aliases: ["MassMutual AI", "MassMutual  prep", "Massachusetts Mutual"]
 tags: [company, insurance, actuarial, risk, timeseries]
 related: ["[[ml-platform]]", "[[feature-store]]"]
 sources: ["training-knowledge", "public-job-postings"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---

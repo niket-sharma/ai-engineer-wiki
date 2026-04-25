@@ -4,7 +4,7 @@ aliases: ["Capital One AI", "Capital One  prep"]
 tags: [company, finance, fraud, nlp, aws]
 related: ["[[rag-systems]]", "[[rag-pipeline-design]]", "[[vector-databases]]", "[[llm-serving-infra]]"]
 sources: ["training-knowledge", "public-job-postings"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---
