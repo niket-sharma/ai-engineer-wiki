@@ -129,7 +129,7 @@ Microsoft's Phi-3 (3.8B params) matches or beats models 10× larger by training 
 - "How does Semantic Kernel's agent architecture work?" (Microsoft framework)
 
 **Coding:**
-- Microsoft interviews are LeetCode-heavy (Medium to Hard)
+- Microsoft coding assessments are LeetCode-heavy (Medium to Hard)
 - Tree/graph problems (BFS, DFS, Dijkstra)
 - DP (classic problems: knapsack, LCS, coin change)
 - Strings and arrays

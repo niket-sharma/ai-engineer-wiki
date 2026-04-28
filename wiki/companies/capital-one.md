@@ -59,7 +59,7 @@ Based on public signals and typical Capital One  structure:
 - **Internal chatbots**: Eno handles customer questions — RAG-based, strict guardrails
 - **Document processing**: contract analysis, regulatory filings (Reg E complaints)
 - **Content moderation**: customer service conversation analysis
-- **Interest**: Capital One hosts "Capital One Tech" engineering blog — read it before interviews
+- **Interest**: Capital One hosts "Capital One Tech" engineering blog — essential reading
 
 ## Likely Questions
 1. "Design a real-time fraud detection system that can score 10,000 transactions per second."

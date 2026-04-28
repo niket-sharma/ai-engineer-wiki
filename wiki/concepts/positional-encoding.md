@@ -4,7 +4,7 @@ aliases: ["PE", "RoPE", "ALiBi", "sinusoidal encoding", "rotary position embeddi
 tags: [transformers, architecture]
 related: ["[[transformer-architecture]]", "[[attention-mechanism]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---
@@ -74,7 +74,7 @@ Where m is a head-specific slope. Closer tokens get higher attention scores. No 
 
 ##  Angles
 
-**What interviewers are really testing:**
+**What to understand deeply:**
 - Do you understand WHY positional encoding is needed (permutation invariance of attention)?
 - Can you explain RoPE at a conceptual level and why it became dominant?
 - Do you know the difference between absolute and relative PE?

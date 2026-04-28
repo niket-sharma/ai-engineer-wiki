@@ -4,7 +4,7 @@ aliases: ["Retrieval-Augmented Generation", "RAG", "naive RAG", "advanced RAG", 
 tags: [rag, retrieval, agents]
 related: ["[[vector-databases]]", "[[reranking]]", "[[langgraph-agents]]", "[[rag-pipeline-design]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---
@@ -84,7 +84,7 @@ Generate a hypothetical answer to the query, embed that, then retrieve using the
 
 ##  Angles
 
-**What interviewers are really testing (especially at finance companies):**
+**What to understand deeply (especially for finance use cases):**
 - Can you design a RAG pipeline end-to-end?
 - Do you know chunking strategies and their tradeoffs?
 - Do you understand hybrid search and why it beats dense-only?

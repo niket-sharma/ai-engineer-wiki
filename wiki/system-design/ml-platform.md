@@ -4,14 +4,14 @@ aliases: [ML Platform, MLOps Platform, Feature Platform]
 tags: [system-design, mlops, feature-store, model-registry, training, serving]
 related: [feature-store, llm-serving-infra, rag-pipeline-design]
 sources: [training-knowledge, mlops-platform-patterns]
-interview_relevance: 8
+relevance: 8
 last_updated: 2025-01-15
 status: current
 ---
 
 # ML Platform Design
 
-## What Interviewers Are Testing
+## What to Understand Deeply
 
 "Design an ML platform for 50 data scientists and 10 ML engineers." Tests your understanding of:
 - The full ML lifecycle (data → features → training → evaluation → serving → monitoring)

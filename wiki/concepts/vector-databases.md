@@ -4,7 +4,7 @@ aliases: ["vector DB", "vector store", "ANN", "FAISS", "Pinecone", "Weaviate", "
 tags: [rag, retrieval, infrastructure]
 related: ["[[rag-systems]]", "[[reranking]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---
@@ -82,7 +82,7 @@ RRF is rank-based — doesn't require score normalization. k=60 is standard.
 
 ##  Angles
 
-**What interviewers are really testing:**
+**What to understand deeply:**
 - Do you understand HNSW vs IVF-PQ tradeoffs?
 - Can you explain hybrid search and RRF?
 - Do you know when to use a managed service vs FAISS?

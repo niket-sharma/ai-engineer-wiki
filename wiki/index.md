@@ -57,16 +57,16 @@
 
 ### Stubs to fill
 ```dataview
-TABLE interview_relevance, last_updated
+TABLE relevance, last_updated
 FROM "wiki/concepts"
 WHERE status = "stub"
-SORT interview_relevance DESC
+SORT relevance DESC
 ```
 
 ### High-priority pages not updated recently
 ```dataview
 TABLE last_updated
 FROM "wiki"
-WHERE interview_relevance = "high" AND last_updated < date(today) - dur(30 days)
+WHERE relevance = "high" AND last_updated < date(today) - dur(30 days)
 SORT last_updated ASC
 ```

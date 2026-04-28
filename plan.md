@@ -106,7 +106,7 @@ git commit -m "chore: bootstrap wiki structure and stub pages"
 ## Phase 1 — Seed the Wiki (Week 1, ~3–4 hours total)
 
 Ingest your highest-priority sources first. The goal is to have the core
-transformer + RL + RAG concepts fully compiled before any interviews.
+transformer + RL + RAG concepts fully compiled as a solid foundation.
 
 ### 1.1 Priority Source List
 
@@ -259,7 +259,7 @@ For each company, gather public signals before asking Claude Code to compile:
 - Job description (paste into `raw/company-specific/<company>-jd.md`)
 - Glassdoor/Blind  reports (paste summaries)
 - Any known tech blog posts from their engineering team
-- LinkedIn profiles of interviewers (if known)
+- LinkedIn profiles of key engineers (if known)
 
 ### 3.2 Build company pages
 
@@ -319,11 +319,11 @@ Review the report. Prioritize what to fix.
   Code to strengthen that wiki page
 - Any time you read a conflicting claim → let the wiki flag it, then resolve
 
-**After a real :**
+**After engaging with a company:**
 ```
-"I just interviewed at [Company]. These topics came up: [list].
+"I just spoke with [Company]. These topics came up: [list].
 Update wiki/companies/[company].md with this intel. Also flag any wiki
-pages that need strengthening based on questions I struggled with: [list]"
+pages that need strengthening based on topics I want to deepen: [list]"
 ```
 
 ### Adding new sources over time
@@ -363,10 +363,10 @@ Add these to `wiki/index.md` as live dashboards:
 ## Stubs to fill
 
 ```dataview
-TABLE interview_relevance, last_updated
+TABLE relevance, last_updated
 FROM "wiki/concepts"
 WHERE status = "stub"
-SORT interview_relevance DESC
+SORT relevance DESC
 ```
 
 ## High-priority pages not updated recently
@@ -374,7 +374,7 @@ SORT interview_relevance DESC
 ```dataview
 TABLE last_updated
 FROM "wiki"
-WHERE interview_relevance = "high" AND last_updated < date(today) - dur(30 days)
+WHERE relevance = "high" AND last_updated < date(today) - dur(30 days)
 SORT last_updated ASC
 ```
 ````

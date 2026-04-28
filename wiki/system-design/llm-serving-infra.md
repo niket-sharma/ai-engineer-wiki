@@ -4,7 +4,7 @@ aliases: ["LLM serving", "model serving", "inference infrastructure", "vLLM", "T
 tags: [system-design, mlops, inference]
 related: ["[[kv-cache]]", "[[flash-attention]]", "[[rag-pipeline-design]]", "[[ml-platform]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---

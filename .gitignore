@@ -1,7 +1,9 @@
-.obsidian/
+﻿.obsidian/
 .DS_Store
 *.swp
 *.tmp
 __pycache__/
 .env
 scripts/
+.claude/
+.claude/worktrees/

@@ -4,7 +4,7 @@ aliases: ["cross-encoder reranking", "ColBERT", "reranker", "two-stage retrieval
 tags: [rag, retrieval]
 related: ["[[rag-systems]]", "[[vector-databases]]"]
 sources: ["training-knowledge"]
-interview_relevance: medium
+relevance: medium
 last_updated: 2026-04-22
 status: current
 ---
@@ -77,7 +77,7 @@ score(q, d) = Σ_i max_j (q_i · d_j)
 
 ##  Angles
 
-**What interviewers are really testing:**
+**What to understand deeply:**
 - Do you understand the bi-encoder / cross-encoder distinction?
 - Can you explain why two-stage retrieval is the standard?
 - Do you know ColBERT and when to use it?

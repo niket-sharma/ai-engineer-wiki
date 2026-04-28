@@ -4,7 +4,7 @@ aliases: ["Reinforcement Learning from Human Feedback", "InstructGPT", "reward m
 tags: [alignment, fine-tuning, rl]
 related: ["[[ppo]]", "[[dpo]]", "[[grpo]]", "[[lora-qlora]]", "[[sft]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---
@@ -76,7 +76,7 @@ This is why PPO is memory-expensive: 4× model memory at minimum.
 
 ##  Angles
 
-**What interviewers are really testing:**
+**What to understand deeply:**
 - Can you describe all three RLHF stages and what each one does?
 - Do you understand why the KL penalty is necessary?
 - Do you know the difference between RLHF and DPO?

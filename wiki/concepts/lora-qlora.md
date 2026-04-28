@@ -4,7 +4,7 @@ aliases: ["LoRA", "QLoRA", "low-rank adaptation", "parameter-efficient fine-tuni
 tags: [fine-tuning, alignment, peft]
 related: ["[[rlhf]]", "[[transformer-architecture]]", "[[dpo]]", "[[grpo]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---
@@ -80,7 +80,7 @@ h = Wx + BAx = Wx + ΔWx
 
 ##  Angles
 
-**What interviewers are really testing:**
+**What to understand deeply:**
 - Can you explain the low-rank decomposition mathematically?
 - Do you understand why ΔW = BA and not just a single matrix?
 - Can you explain the memory savings from QLoRA end-to-end?

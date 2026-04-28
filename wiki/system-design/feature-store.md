@@ -4,7 +4,7 @@ aliases: [Feature Store, Online Feature Store, Offline Feature Store]
 tags: [system-design, mlops, feature-store, real-time-ml]
 related: [ml-platform, rag-pipeline-design]
 sources: [training-knowledge, feast-docs, tecton-blog]
-interview_relevance: 7
+relevance: 7
 last_updated: 2025-01-15
 status: current
 ---

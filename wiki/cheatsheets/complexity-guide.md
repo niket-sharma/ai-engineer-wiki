@@ -3,7 +3,7 @@ title: "Algorithm Complexity Guide"
 aliases: ["complexity cheatsheet", "Big O cheatsheet", "time complexity"]
 tags: [cheatsheet, algorithms, coding]
 sources: ["training-knowledge"]
-interview_relevance: medium
+relevance: medium
 last_updated: 2026-04-22
 status: current
 ---

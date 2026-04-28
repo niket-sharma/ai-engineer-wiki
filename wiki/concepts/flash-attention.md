@@ -4,7 +4,7 @@ aliases: ["FlashAttention", "FA", "FA2", "FA3", "IO-aware attention"]
 tags: [transformers, optimization, inference, training]
 related: ["[[attention-mechanism]]", "[[kv-cache]]", "[[transformer-architecture]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---
@@ -73,7 +73,7 @@ This produces exact softmax without ever having the full row in memory.
 
 ##  Angles
 
-**What interviewers are really testing:**
+**What to understand deeply:**
 - Do you understand the GPU memory hierarchy and why IO matters?
 - Can you explain the online softmax trick at a high level?
 - Do you know the difference between FA's contribution (IO efficiency) vs KV cache (compute reduction)?

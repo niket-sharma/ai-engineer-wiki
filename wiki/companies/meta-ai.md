@@ -115,7 +115,7 @@ Meta created PyTorch (now a Linux Foundation project). Internal AI infra:
 - "What is differential privacy and how would you apply it to ad targeting post-ATT?"
 
 **Coding:**
-- Meta interviews are among the hardest for coding
+- Meta is among the hardest companies for coding assessments
 - Expect LeetCode Hard
 - Focus: graphs, trees, DP, sliding window, backtracking
 - Also: system design coding (implement a simplified version of a component)
@@ -165,7 +165,7 @@ def rank_score(predictions, weights):
 
 ## Red Flags at Meta
 
-- **Weak coding:** Meta is famous for hard coding interviews. You need LeetCode Hard fluency.
+- **Weak coding:** Meta is famous for hard coding assessments. You need LeetCode Hard fluency.
 - **Not knowing PyTorch:** Everything at Meta is PyTorch. TensorFlow experience doesn't transfer well.
 - **Ignoring engagement metrics:** "Model accuracy" is not the goal — user time-well-spent, engagement, and business metrics are.
 - **No sense of scale:** Meta = billions of users. Design must work at that scale.

@@ -4,7 +4,7 @@ aliases: ["Direct Preference Optimization", "IPO", "KTO", "ORPO"]
 tags: [alignment, fine-tuning]
 related: ["[[rlhf]]", "[[ppo]]", "[[grpo]]", "[[lora-qlora]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---
@@ -73,7 +73,7 @@ Where:
 
 ##  Angles
 
-**What interviewers are really testing:**
+**What to understand deeply:**
 - Can you derive or explain the DPO loss at a conceptual level?
 - Do you understand what the β parameter controls?
 - Do you know when to use DPO vs RLHF/PPO?

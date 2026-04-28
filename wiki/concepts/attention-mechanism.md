@@ -4,7 +4,7 @@ aliases: ["self-attention", "scaled dot-product attention", "multi-head attentio
 tags: [transformers, architecture, core-concept]
 related: ["[[transformer-architecture]]", "[[kv-cache]]", "[[flash-attention]]", "[[positional-encoding]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---
@@ -63,7 +63,7 @@ head_i = Attention(Q·W_Qi, K·W_Ki, V·W_Vi)
 
 ##  Angles
 
-**What interviewers are really testing:**
+**What to understand deeply:**
 - Can you derive the attention formula and explain each component?
 - Do you understand *why* we scale by √d_k?
 - Can you explain MHA vs MQA vs GQA and the KV cache motivation?

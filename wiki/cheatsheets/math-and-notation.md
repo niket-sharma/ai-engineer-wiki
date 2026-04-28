@@ -4,7 +4,7 @@ aliases: ["math cheatsheet", "transformer math", "attention formula"]
 tags: [cheatsheet, math, transformers]
 related: ["[[attention-mechanism]]", "[[transformer-architecture]]", "[[lora-qlora]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---

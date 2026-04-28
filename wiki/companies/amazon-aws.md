@@ -13,7 +13,7 @@ status: current
 
 ## Company Context
 
-Amazon AI spans two major businesses: **Amazon** (consumer: recommendations, search, Alexa, logistics optimization) and **AWS** (cloud: SageMaker, Bedrock, Trainium/Inferentia, managed AI services). The culture is LP (Leadership Principles) driven — every interview has behavioral and technical components framed around LPs.
+Amazon AI spans two major businesses: **Amazon** (consumer: recommendations, search, Alexa, logistics optimization) and **AWS** (cloud: SageMaker, Bedrock, Trainium/Inferentia, managed AI services). The culture is LP (Leadership Principles) driven — every role has behavioral and technical components framed around LPs.
 
 **Key AI products:** Product recommendations (35% of revenue), Alexa, Amazon Search, Fraud detection, AWS SageMaker, Amazon Bedrock (managed LLM API), Kendra (enterprise search), Rekognition, Transcribe, Comprehend.
 
@@ -89,7 +89,7 @@ class DLRM(nn.Module):
 
 Every answer should implicitly or explicitly touch an LP:
 
-| LP | How it shows up in ML interviews |
+| LP | How it shows up in ML assessments |
 |---|---|
 | **Customer Obsession** | Why does this metric matter for customers? Not just model accuracy |
 | **Dive Deep** | Don't hand-wave. Know the math, the algorithm internals |

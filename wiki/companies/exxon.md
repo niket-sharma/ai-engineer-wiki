@@ -74,7 +74,7 @@ AI/ML roles here are more "industrial AI" than "LLM" — expect more emphasis on
 
 ## Red Flags to Avoid
 - Don't propose LLM-first solutions — industrial AI at Exxon is more classical ML + domain physics
-- Don't ignore sensor data preprocessing (noise, missing values, synchronization) — interviewers know this is hard
+- Don't ignore sensor data preprocessing (noise, missing values, synchronization) — this is notoriously hard
 - Don't ignore the cost asymmetry: unplanned downtime is catastrophic; false alarms are expensive but manageable
 
 ## Connections

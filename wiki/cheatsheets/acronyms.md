@@ -3,7 +3,7 @@ title: "Acronyms Cheatsheet"
 aliases: ["acronym list", "abbreviations", "terminology"]
 tags: [cheatsheet, reference]
 sources: ["training-knowledge"]
-interview_relevance: medium
+relevance: medium
 last_updated: 2026-04-22
 status: current
 ---

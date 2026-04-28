@@ -4,7 +4,7 @@ aliases: ["key-value cache", "kv-caching", "paged attention"]
 tags: [transformers, inference, optimization]
 related: ["[[attention-mechanism]]", "[[transformer-architecture]]", "[[flash-attention]]", "[[llm-serving-infra]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---
@@ -65,7 +65,7 @@ Rather than allocating a contiguous block of GPU memory for the full max sequenc
 
 ##  Angles
 
-**What interviewers are really testing:**
+**What to understand deeply:**
 - Do you understand *why* only K and V are cached (not Q)?
 - Can you compute KV cache memory size for a given model?
 - Do you understand the connection between GQA and KV cache reduction?

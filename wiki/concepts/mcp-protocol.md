@@ -4,7 +4,7 @@ aliases: ["Model Context Protocol", "MCP", "MCP server", "MCP client"]
 tags: [agents, orchestration, tooling, protocol]
 related: ["[[langgraph-agents]]"]
 sources: ["training-knowledge"]
-interview_relevance: medium
+relevance: medium
 last_updated: 2026-04-22
 status: current
 ---
@@ -76,7 +76,7 @@ def search_database(query: str, table: str) -> str:
 
 ##  Angles
 
-**What interviewers are really testing:**
+**What to understand deeply:**
 - Are you aware of MCP as an emerging standard?
 - Can you explain why a protocol like MCP is valuable (avoiding N×M integrations)?
 - Do you understand the primitives (tools, resources, prompts)?

@@ -4,7 +4,7 @@ aliases: ["RAG system design", "production RAG"]
 tags: [system-design, rag]
 related: ["[[rag-systems]]", "[[vector-databases]]", "[[reranking]]", "[[llm-serving-infra]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---
@@ -17,7 +17,7 @@ Production RAG consists of two pipelines: an offline ingestion pipeline (documen
 ## Problem Statement
 Build a system that answers questions grounded in a private document corpus, with citations, at low latency and high accuracy.
 
-**Scope questions to ask the interviewer:**
+**Scope questions to clarify:**
 - How many documents? (10k vs 10M changes everything)
 - Document types? (PDFs, HTML, structured data?)
 - Query volume? (10 QPS vs 10,000 QPS)

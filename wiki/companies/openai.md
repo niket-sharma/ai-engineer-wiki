@@ -192,10 +192,10 @@ if response.choices[0].message.tool_calls:
 
 ## OpenAI-Specific Culture Notes
 
-- **Safety is real:** OpenAI takes AI safety seriously. Interviewers may ask about alignment, RLHF safety, and responsible deployment.
+- **Safety is real:** OpenAI takes AI safety seriously. Engineers are expected to understand alignment, RLHF safety, and responsible deployment.
 - **Research-engineering hybrid:** Many roles combine ML research and systems engineering. Expect depth in both.
 - **Pace:** One of the fastest-moving environments in tech. GPT-3.5 → GPT-4 → GPT-4o → o1 in 18 months.
-- **Competition:** Anthropic, Google DeepMind, Meta AI are all competing. Interviewers care that you understand the competitive landscape.
+- **Competition:** Anthropic, Google DeepMind, Meta AI are all competing. Understanding the competitive landscape is expected.
 
 ---
 

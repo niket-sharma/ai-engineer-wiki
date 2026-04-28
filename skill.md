@@ -117,7 +117,7 @@ aliases: ["self-attention", "scaled dot-product attention"]
 tags: [transformers, architecture, core-concept]
 related: ["[[transformer-architecture]]", "[[kv-cache]]", "[[flash-attention]]"]
 sources: ["raw/transformers/attention-is-all-you-need.md", "raw/transformers/karpathy-gpt-lecture.md"]
-interview_relevance: high          # high | medium | low
+relevance: high                    # high | medium | low
 last_updated: 2026-04-16
 status: current                    # current | outdated | stub
 ---
@@ -221,7 +221,7 @@ the corresponding steps precisely.
    their own page. Output a "Missing Pages" list.
 
 5. **Staleness check.** List pages where `last_updated` is > 60 days old and
-   `interview_relevance: high` — these may need refreshing.
+   `relevance: high` — these may need refreshing.
 
 6. **Output a report:**
    ```
@@ -299,7 +299,7 @@ aliases: []
 tags: []
 related: []
 sources: []
-interview_relevance: medium
+relevance: medium
 last_updated: YYYY-MM-DD
 status: stub
 ---
@@ -307,7 +307,7 @@ status: stub
 # <Title>
 
 ## TL;DR
-One-sentence definition. One-sentence "why it matters for interviews."
+One-sentence definition. One-sentence "why it matters."
 
 ## Intuition
 Plain-language explanation. No jargon. Use an analogy if helpful.
@@ -324,7 +324,7 @@ How this concept evolved or branches (e.g., MHA → MQA → GQA).
 | ... | ... |
 
 ##  Angles
-- What interviewers are really testing when they ask about this
+- What to understand deeply about this topic
 - Common follow-up questions
 - Gotchas / misconceptions to avoid
 

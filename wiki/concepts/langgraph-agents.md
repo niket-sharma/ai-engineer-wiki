@@ -4,7 +4,7 @@ aliases: ["LangGraph", "agent orchestration", "ReAct", "tool use", "agentic AI",
 tags: [agents, orchestration, rag]
 related: ["[[rag-systems]]", "[[mcp-protocol]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---
@@ -98,7 +98,7 @@ llm_with_tools = llm.bind_tools(tools)
 
 ##  Angles
 
-**What interviewers are really testing:**
+**What to understand deeply:**
 - Do you understand the ReAct pattern and why agents need it?
 - Can you design a multi-step agentic RAG pipeline?
 - Do you understand the tradeoffs of agentic vs single-call approaches?

@@ -4,7 +4,7 @@ aliases: ["transformer", "GPT architecture", "BERT architecture", "decoder-only"
 tags: [transformers, architecture, core-concept]
 related: ["[[attention-mechanism]]", "[[positional-encoding]]", "[[kv-cache]]", "[[flash-attention]]", "[[lora-qlora]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---
@@ -78,7 +78,7 @@ Input → Token Embedding + Positional Encoding
 
 ##  Angles
 
-**What interviewers are really testing:**
+**What to understand deeply:**
 - Can you describe a transformer layer component-by-component?
 - Do you know the difference between encoder-only, decoder-only, encoder-decoder?
 - Can you estimate parameter counts and explain what drives them?

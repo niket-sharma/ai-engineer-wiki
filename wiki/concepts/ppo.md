@@ -4,7 +4,7 @@ aliases: ["Proximal Policy Optimization", "clipped PPO", "PPO-clip"]
 tags: [rl, alignment, fine-tuning]
 related: ["[[rlhf]]", "[[grpo]]", "[[dpo]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---
@@ -77,7 +77,7 @@ A_t = Σ_{k=0}^{∞} (γλ)^k δ_{t+k}    where δ_t = r_t + γV(s_{t+1}) - V(s_
 
 ##  Angles
 
-**What interviewers are really testing:**
+**What to understand deeply:**
 - Can you explain the clipping objective and why it prevents large updates?
 - Do you understand GAE and why a value model is needed?
 - Do you know how PPO is adapted for the text generation (LLM) setting?

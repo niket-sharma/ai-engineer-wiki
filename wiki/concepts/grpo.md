@@ -4,7 +4,7 @@ aliases: ["Group Relative Policy Optimization", "DeepSeek-R1 training", "GRPO"]
 tags: [rl, alignment, fine-tuning]
 related: ["[[ppo]]", "[[rlhf]]", "[[dpo]]"]
 sources: ["training-knowledge"]
-interview_relevance: high
+relevance: high
 last_updated: 2026-04-22
 status: current
 ---
@@ -72,7 +72,7 @@ Where:
 
 ##  Angles
 
-**What interviewers are really testing:**
+**What to understand deeply:**
 - Do you know what GRPO is and why it's relevant (DeepSeek-R1)?
 - Can you explain how it differs from PPO structurally?
 - Do you understand what the group normalization baseline does?
