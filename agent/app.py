@@ -1,10 +1,10 @@
-﻿import streamlit as st
+import streamlit as st
 
 from agent import run_agent
 
 st.set_page_config(page_title="AI Engineer Wiki", page_icon="📚")
 st.title("📚 AI Engineer Wiki")
-st.caption("Operate the compiled wiki: ingest, query, audit, generate, company prep, cheatsheets.")
+st.caption("Operate the compiled wiki: ingest, query, audit, generate Q&A, cheatsheets.")
 
 if "history" not in st.session_state:
     st.session_state.history = []
@@ -20,7 +20,6 @@ st.sidebar.markdown(
 - `What does the wiki say about KV cache?`
 - `Run a full wiki audit`
 - `Generate Q&A on LoRA`
-- `Update company prep for Capital One`
 - `Make a cheatsheet for positional encoding`
 """
 )

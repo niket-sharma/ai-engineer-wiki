@@ -1,0 +1,28 @@
+site_name: AI Engineer Wiki
+site_description: A living, compounding knowledge base for AI engineering
+docs_dir: wiki
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - footnotes
+  - tables
+  - toc:
+      permalink: true

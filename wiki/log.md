@@ -54,5 +54,5 @@ Drop any of the following into `raw/` and say "Ingest raw/<path>":
 - Attention Is All You Need paper notes → `raw/transformers/`
 - Karpathy GPT lecture notes → `raw/transformers/`
 - DeepSeek-R1 paper notes → `raw/rl-and-rlhf/`
-- LangGraph documentation → `raw/mlops/`
+- LangGraph documentation → `raw/rag-retrieval/`
 - Company JDs → `raw/company-specific/`

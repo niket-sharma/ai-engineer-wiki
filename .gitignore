@@ -1,4 +1,4 @@
-﻿.obsidian/
+.obsidian/
 .DS_Store
 *.swp
 *.tmp
@@ -7,3 +7,6 @@ __pycache__/
 scripts/
 .claude/
 .claude/worktrees/
+CLAUDE.md
+plan.md
+plan-enhancement.md

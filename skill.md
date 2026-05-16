@@ -1,17 +1,17 @@
 ---
-name: ai-engineer--wiki
+name: ai-engineer-wiki
 description: >
-  Build and maintain a living, compounding AI Engineer  knowledge base
+  Build and maintain a living, compounding AI Engineer knowledge base
   using the LLM Wiki pattern. Use this skill whenever the user wants to ingest
   study material (papers, notes, blog posts, transcripts), update wiki pages,
   query the knowledge base, audit for contradictions, or run any operation on
-  the AI Engineer  Wiki. Triggers on phrases like "add to wiki",
+  the AI Engineer Wiki. Triggers on phrases like "add to wiki",
   "update the wiki", "ingest this", "what does the wiki say about", "audit the
-  wiki", "add a source", "compile notes", " prep wiki", or any mention
-  of the ai-engineer--wiki project.
+  wiki", "add a source", "compile notes", "wiki prep", or any mention
+  of the ai-engineer-wiki project.
 ---
 
-# AI Engineer  Wiki
+# AI Engineer Wiki
 
 A **living, compounding knowledge base** for AI Engineer / Senior Data Scientist
  preparation — built on Andrej Karpathy's LLM Wiki pattern.
@@ -39,7 +39,7 @@ every source you add. Query time is fast because synthesis has already happened.
 ## 2. Repository Layout
 
 ```
-ai-engineer--wiki/
+ai-engineer-wiki/
 │
 ├── raw/                          # Immutable source material (never edited)
 │   ├── transformers/
@@ -79,14 +79,7 @@ ai-engineer--wiki/
 │   │   ├── ml-platform.md
 │   │   └── ...
 │   │
-│   ├── companies/                # Company-specific prep
-│   │   ├── capital-one.md
-│   │   ├── massmutual.md
-│   │   ├── fidelity.md
-│   │   ├── exxon.md
-│   │   └── ...
-│   │
-│   ├── -qa/             # Synthesized Q&A pairs
+│   ├── qa/                      # Synthesized Q&A pairs
 │   │   ├── transformers-qa.md
 │   │   ├── rl-qa.md
 │   │   ├── mlops-qa.md
@@ -107,7 +100,7 @@ ai-engineer--wiki/
 
 ## 3. Wiki Page Schema
 
-Every page in `wiki/concepts/`, `wiki/system-design/`, and `wiki/companies/`
+Every page in `wiki/concepts/` and `wiki/system-design/`
 MUST follow this YAML frontmatter schema:
 
 ```yaml
@@ -154,7 +147,7 @@ the corresponding steps precisely.
    - Core concepts defined or explained
    - Key claims, formulas, algorithms
    - Comparisons to other methods
-   - -relevant insights (anything that answers "why", "when", "tradeoffs")
+   - Practical insights (anything that answers "why", "when", "tradeoffs")
 
 4. **Identify affected wiki pages.** Check `wiki/index.md` for existing pages
    that overlap with the source content.
@@ -170,7 +163,7 @@ the corresponding steps precisely.
 6. **Create new pages.** For concepts not yet in the wiki:
    - Create `wiki/concepts/<slug>.md` with full frontmatter
    - Write an encyclopedia-style page: definition → intuition → math/detail →
-     variants → tradeoffs →  angles
+     variants → tradeoffs → practical applications
    - Add wiki-links `[[like-this]]` to all related concepts
 
 7. **Update index.** Add new pages to `wiki/index.md` under the correct section.
@@ -238,7 +231,7 @@ the corresponding steps precisely.
 ### OP-4: GENERATE — Create  Q&A
 
 **Trigger phrases:** "generate questions", "make a Q&A for", "create flashcards",
-"give me  questions on", "prep me for X"
+"give me technical questions on", "prep me for X"
 
 **Steps:**
 
@@ -248,33 +241,13 @@ the corresponding steps precisely.
    - **L2 — Technical:** "Walk me through the math/algorithm of X."
    - **L3 — Applied:** "How would you use X in a production system? What are
      the tradeoffs?"
-3. Save output to `wiki/-qa/<topic>-qa.md`.
+3. Save output to `wiki/qa/<topic>-qa.md`.
 4. Tag each question with `[L1]`, `[L2]`, or `[L3]`.
 5. Include a "Common Follow-ups" section per question.
 
 ---
 
-### OP-5: COMPANY PREP — Build or update a company page
-
-**Trigger phrases:** "prep for Capital One", "update the Fidelity page",
-"what should I know for MassMutual", "company research"
-
-**Steps:**
-
-1. Read or create `wiki/companies/<company>.md`.
-2. Populate / update sections:
-   - **Role Focus:** What AI/ML problems does this company care about?
-   - **Tech Stack Signals:** Known tools, frameworks, cloud providers
-   - ** Style:** LeetCode? System design? Case study? ML theory?
-   - **Domain-Specific Concepts:** (e.g., for Capital One: fraud detection,
-     credit risk, NLP on financial text)
-   - **Likely Questions:** 5–10 predicted technical questions
-   - **Red Flags to Avoid:** Common missteps for this role/company
-3. Cross-link to relevant concept pages.
-
----
-
-### OP-6: CHEATSHEET — Generate quick-reference summaries
+### OP-5: CHEATSHEET — Generate quick-reference summaries
 
 **Trigger phrases:** "make a cheatsheet", "quick reference for", "summarize X
 in one page", "give me a cheatsheet"
@@ -323,8 +296,8 @@ How this concept evolved or branches (e.g., MHA → MQA → GQA).
 |---|---|
 | ... | ... |
 
-##  Angles
-- What to understand deeply about this topic
+## Practical Applications
+- Common use cases and when to apply
 - Common follow-up questions
 - Gotchas / misconceptions to avoid
 
@@ -347,13 +320,14 @@ to the right `raw/` subdirectory and wiki section.
 |---|---|---|
 | Transformer Architecture | `raw/transformers/` | Attention, MHA, PE, LayerNorm, FFN, KV cache, Flash Attention, GQA |
 | Fine-tuning & Alignment | `raw/rl-and-rlhf/` | RLHF, PPO, DPO, GRPO, LoRA, QLoRA, SFT, ORPO |
-| RAG & Retrieval | `raw/mlops/` | RAG, reranking, hybrid search, vector DBs, chunking, eval |
-| Agents & Orchestration | `raw/mlops/` | LangGraph, ReAct, tool use, MCP, memory, async agents |
-| MLOps & Serving | `raw/mlops/` | Quantization, ONNX, TRT, batching, latency/throughput, monitoring |
+| Inference & Serving | `raw/inference-serving/` | Quantization, speculative decoding, continuous batching, paged attention, TP/PP |
+| RAG & Retrieval | `raw/rag-retrieval/` | RAG, reranking, hybrid search, vector DBs, chunking, HyDE, embedding models |
+| Agents & Orchestration | `raw/agents/` | LangGraph, ReAct, tool use, MCP, memory, multi-agent, agentic RAG |
+| Evaluation | `raw/evaluation/` | LLM eval, RAG eval, agent eval, embedding eval, offline vs online |
+| Production AI Systems | `raw/production-ai/` | Prompt injection, guardrails, cost optimization, observability, model routing |
 | System Design | `raw/system-design/` | ML platform, feature store, data pipeline, A/B testing, shadow mode |
 | Statistics & Classic ML | `raw/statistics-and-ml/` | Bias-variance, regularization, ensembles, Bayesian inference, causal inference |
 | Coding & Algorithms | `raw/coding-and-algos/` | LeetCode patterns, complexity, Python idioms, numpy/pandas |
-| Company-Specific | `raw/company-specific/` | Finance AI, fraud, risk, NLP on financial data |
 
 ---
 
@@ -363,8 +337,8 @@ When starting from a fresh repo, execute this sequence:
 
 ```
 Step 1: Create directory structure
-  mkdir -p raw/{transformers,rl-and-rlhf,mlops,system-design,coding-and-algos,statistics-and-ml,company-specific,misc}
-  mkdir -p wiki/{concepts,system-design,companies,-qa,cheatsheets}
+  mkdir -p raw/{transformers,rl-and-rlhf,inference-serving,rag-retrieval,agents,evaluation,production-ai,system-design,statistics-and-ml,coding-and-algos,misc}
+  mkdir -p wiki/{concepts,system-design,qa,cheatsheets}
 
 Step 2: Create wiki/index.md
   Use the Index Template (see Section 8).
@@ -385,7 +359,7 @@ Step 5: Run first INGEST
 ## 8. Index Template (`wiki/index.md`)
 
 ```markdown
-# AI Engineer  Wiki — Index
+# AI Engineer Wiki — Index
 
 > Last audited: YYYY-MM-DD | Pages: N | Sources: N | Stubs: N
 
@@ -417,13 +391,7 @@ Step 5: Run first INGEST
 - [[llm-serving-infra]]
 - [[ml-platform]]
 
-## Companies
-- [[capital-one]]
-- [[massmutual]]
-- [[fidelity]]
-- [[exxon]]
-
-##  Q&A
+## Q&A
 - [[transformers-qa]]
 - [[rl-qa]]
 - [[mlops-qa]]
@@ -448,8 +416,8 @@ The LLM MUST follow these rules on every operation:
 3. **Always log every operation** to `wiki/log.md`.
 4. **Use wiki-links `[[page-name]]`** for all cross-references — never bare text.
 5. **Flag contradictions** with `> ⚠️ CONTRADICTION:` — never silently overwrite.
-6. **-first framing.** Every concept page must have an " Angles"
-   section. Knowledge without  relevance is incomplete.
+6. **Practical framing.** Every concept page must have a "Practical Applications"
+   section. Knowledge without practical grounding is incomplete.
 7. **Cite sources** in frontmatter AND in page body where specific claims come
    from a specific source.
 8. **Don't hallucinate.** If a concept isn't in the wiki or the provided source,
@@ -465,29 +433,18 @@ The LLM MUST follow these rules on every operation:
 2. Extract: GPT architecture, attention implementation, training loop, BPE
 3. Update: [[transformer-architecture]], [[attention-mechanism]], [[kv-cache]]
 4. Create new page if needed: [[byte-pair-encoding]]
-5. Generate Q&A: wiki/-qa/transformers-qa.md
+5. Generate Q&A: wiki/qa/transformers-qa.md
 6. Log the operation
 ```
 
 ### "Quiz me on attention mechanisms"
 ```
 1. Read wiki/concepts/attention-mechanism.md
-2. Pull L1/L2/L3 questions from wiki/-qa/transformers-qa.md
+2. Pull L1/L2/L3 questions from wiki/qa/transformers-qa.md
 3. Present questions one at a time, wait for answer, give feedback
 4. Cite wiki pages in feedback: "According to [[kv-cache]], the reason is..."
 ```
 
-### "Prep me for my Capital One  next week"
-```
-1. Read wiki/companies/capital-one.md
-2. Read relevant concept pages (fraud, NLP, system design)
-3. Generate a tailored study plan:
-   - Day 1-2: [[rag-systems]], [[vector-databases]]
-   - Day 3-4: [[system-design/rag-pipeline-design]]
-   - Day 5: [[-qa/system-design-qa]]
-   - Day 6: Mock  from [[companies/capital-one]] likely questions
-   - Day 7: Review [[cheatsheets/]]
-```
 
 ---
 
@@ -496,10 +453,9 @@ The LLM MUST follow these rules on every operation:
 When initializing the repo, create `README.md` with:
 
 ```markdown
-# AI Engineer  Wiki
+# AI Engineer Wiki
 
-A living, compounding knowledge base for AI Engineer and Senior Data Scientist
- preparation — built on Andrej Karpathy's LLM Wiki pattern.
+A living, compounding knowledge base for AI engineering — built on Andrej Karpathy's LLM Wiki pattern.
 
 ## How it works
 Raw sources go in `raw/`. An LLM agent compiles them into structured,
@@ -516,8 +472,7 @@ source added. Query the wiki instead of re-reading raw sources.
 - **INGEST:** Add a new source → "ingest raw/transformers/paper.md"
 - **QUERY:** Ask a question → "what does the wiki say about KV cache?"
 - **AUDIT:** Health check → "audit the wiki"
-- **GENERATE:** Make Q&A → "generate  questions on LoRA"
-- **COMPANY:** Company prep → "prep me for Capital One"
+- **GENERATE:** Make Q&A → "generate questions on LoRA"
 - **CHEATSHEET:** Quick ref → "make a cheatsheet for positional encoding"
 
 ## Stack
@@ -527,11 +482,11 @@ source added. Query the wiki instead of re-reading raw sources.
 - Version control: Git
 
 ## Topics Covered
-Transformers · RLHF/DPO/GRPO · RAG & Retrieval · LLM Agents · MLOps ·
-System Design · Statistics · Algorithms · Company-Specific Prep
+Transformers · RLHF/DPO/GRPO · RAG & Retrieval · LLM Agents · Inference & Serving ·
+Evaluation · Production AI · System Design · Statistics · Algorithms
 ```
 
 ---
 
-*SKILL.md version 1.0 — AI Engineer  Wiki*  
+*SKILL.md version 1.0 — AI Engineer Wiki*  
 *Designed for use with Claude Code. Compatible with Cursor and other agent frameworks.*

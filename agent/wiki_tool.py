@@ -1,4 +1,4 @@
-﻿import re
+import re
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -228,7 +228,12 @@ def _extract_frontmatter_info(text: str) -> FrontmatterInfo:
     fm = text[4:end]
     rel = re.search(r"^relevance:\s*(\S+)\s*$", fm, flags=re.MULTILINE)
     if rel:
-        info.relevance = rel.group(1).strip().lower()
+        raw = rel.group(1).strip().lower()
+        try:
+            n = int(raw)
+            info.relevance = "high" if n >= 8 else ("medium" if n >= 5 else "low")
+        except ValueError:
+            info.relevance = raw
 
     status = re.search(r"^status:\s*(\S+)\s*$", fm, flags=re.MULTILINE)
     if status:
@@ -298,141 +303,163 @@ def audit_wiki() -> str:
     for slug, refs in sorted(missing_links.items()):
         missing_pages_lines.append(f"- [[{slug}]] referenced in: {', '.join(sorted(refs))}")
 
-    report = [
-        f"## Wiki Audit Report - {date.today().isoformat()}",
-        f"### Unresolved Contradictions: {len(contradiction_entries)}",
-        *contradiction_entries[:50] if contradiction_entries else ["- None"],
-        f"### Orphan Pages: {len(orphan_pages)}",
-        *(f"- {p}" for p in orphan_pages[:100]) if orphan_pages else ["- None"],
-        f"### Stub Pages: {len(stub_pages)}",
-        *(f"- {p}" for p in stub_pages[:100]) if stub_pages else ["- None"],
-        f"### Missing Pages (referenced but absent): {len(missing_pages_lines)}",
-        *missing_pages_lines[:100] if missing_pages_lines else ["- None"],
-        f"### Stale High-Priority Pages: {len(stale_high_priority)}",
-        *stale_high_priority[:100] if stale_high_priority else ["- None"],
-    ]
+    report = [f"## Wiki Audit Report - {date.today().isoformat()}"]
+    report.append(f"### Unresolved Contradictions: {len(contradiction_entries)}")
+    report.extend(contradiction_entries[:50] if contradiction_entries else ["- None"])
+    report.append(f"### Orphan Pages: {len(orphan_pages)}")
+    report.extend([f"- {p}" for p in orphan_pages[:100]] if orphan_pages else ["- None"])
+    report.append(f"### Stub Pages: {len(stub_pages)}")
+    report.extend([f"- {p}" for p in stub_pages[:100]] if stub_pages else ["- None"])
+    report.append(f"### Missing Pages (referenced but absent): {len(missing_pages_lines)}")
+    report.extend(missing_pages_lines[:100] if missing_pages_lines else ["- None"])
+    report.append(f"### Stale High-Priority Pages: {len(stale_high_priority)}")
+    report.extend(stale_high_priority[:100] if stale_high_priority else ["- None"])
     return "\n".join(report)
 
 
 WIKI_TOOL_SCHEMA = {
-    "name": "wiki_lookup",
-    "description": (
-        "Look up compiled knowledge from the AI Engineer Wiki. "
-        "Returns full synthesized pages or specific sections. "
-        "Use this before answering wiki questions."
-    ),
-    "input_schema": {
-        "type": "object",
-        "properties": {
-            "page_names": {
-                "type": "array",
-                "items": {"type": "string"},
-                "description": "Wiki page slugs to load, e.g. ['attention-mechanism', 'kv-cache']",
+    "type": "function",
+    "function": {
+        "name": "wiki_lookup",
+        "description": (
+            "Look up compiled knowledge from the AI Engineer Wiki. "
+            "Returns full synthesized pages or specific sections. "
+            "Use this before answering wiki questions."
+        ),
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "page_names": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "description": "Wiki page slugs to load, e.g. ['attention-mechanism', 'kv-cache']",
+                },
+                "sections": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "description": (
+                        "Optional. Specific ## section headings to extract, "
+                        "e.g. ['TL;DR', 'Tradeoffs']. If omitted, full pages are returned."
+                    ),
+                },
             },
-            "sections": {
-                "type": "array",
-                "items": {"type": "string"},
-                "description": (
-                    "Optional. Specific ## section headings to extract, "
-                    "e.g. ['TL;DR', 'Tradeoffs']. If omitted, full pages are returned."
-                ),
-            },
+            "required": ["page_names"],
         },
-        "required": ["page_names"],
     },
 }
 
 LIST_PAGES_TOOL_SCHEMA = {
-    "name": "list_wiki_pages",
-    "description": "List all wiki markdown pages with slug and path.",
-    "input_schema": {
-        "type": "object",
-        "properties": {},
+    "type": "function",
+    "function": {
+        "name": "list_wiki_pages",
+        "description": "List all wiki markdown pages with slug and path.",
+        "parameters": {
+            "type": "object",
+            "properties": {},
+        },
     },
 }
 
 READ_RAW_TOOL_SCHEMA = {
-    "name": "read_raw_source",
-    "description": "Read a raw source file. Path must be under raw/.",
-    "input_schema": {
-        "type": "object",
-        "properties": {
-            "raw_path": {
-                "type": "string",
-                "description": "Repo-relative path like raw/transformers/attention-is-all-you-need.md",
-            }
+    "type": "function",
+    "function": {
+        "name": "read_raw_source",
+        "description": "Read a raw source file. Path must be under raw/.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "raw_path": {
+                    "type": "string",
+                    "description": "Repo-relative path like raw/transformers/attention-is-all-you-need.md",
+                }
+            },
+            "required": ["raw_path"],
         },
-        "required": ["raw_path"],
     },
 }
 
 READ_WIKI_FILE_TOOL_SCHEMA = {
-    "name": "read_wiki_file",
-    "description": "Read a wiki file. Path must be under wiki/.",
-    "input_schema": {
-        "type": "object",
-        "properties": {
-            "path": {
-                "type": "string",
-                "description": "Repo-relative path like wiki/concepts/kv-cache.md",
-            }
+    "type": "function",
+    "function": {
+        "name": "read_wiki_file",
+        "description": "Read a wiki file. Path must be under wiki/.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "type": "string",
+                    "description": "Repo-relative path like wiki/concepts/kv-cache.md",
+                }
+            },
+            "required": ["path"],
         },
-        "required": ["path"],
     },
 }
 
 WRITE_WIKI_FILE_TOOL_SCHEMA = {
-    "name": "write_wiki_file",
-    "description": "Create or update a wiki file. Path must be under wiki/.",
-    "input_schema": {
-        "type": "object",
-        "properties": {
-            "path": {
-                "type": "string",
-                "description": "Repo-relative path under wiki/",
+    "type": "function",
+    "function": {
+        "name": "write_wiki_file",
+        "description": "Create or update a wiki file. Path must be under wiki/.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "path": {
+                    "type": "string",
+                    "description": "Repo-relative path under wiki/",
+                },
+                "content": {
+                    "type": "string",
+                    "description": "Full file content to write.",
+                },
             },
-            "content": {
-                "type": "string",
-                "description": "Full file content to write.",
-            },
+            "required": ["path", "content"],
         },
-        "required": ["path", "content"],
     },
 }
 
 APPEND_LOG_TOOL_SCHEMA = {
-    "name": "append_wiki_log",
-    "description": "Append an operation entry to wiki/log.md.",
-    "input_schema": {
-        "type": "object",
-        "properties": {
-            "entry": {
-                "type": "string",
-                "description": "Log entry markdown body.",
-            }
+    "type": "function",
+    "function": {
+        "name": "append_wiki_log",
+        "description": "Append an operation entry to wiki/log.md.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "entry": {
+                    "type": "string",
+                    "description": "Log entry markdown body.",
+                }
+            },
+            "required": ["entry"],
         },
-        "required": ["entry"],
     },
 }
 
 SEARCH_WIKI_TOOL_SCHEMA = {
-    "name": "search_wiki",
-    "description": "Search all wiki markdown files for a text query.",
-    "input_schema": {
-        "type": "object",
-        "properties": {
-            "query": {"type": "string"},
-            "limit": {"type": "integer", "minimum": 1, "maximum": 100, "default": 20},
+    "type": "function",
+    "function": {
+        "name": "search_wiki",
+        "description": "Search all wiki markdown files for a text query.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "query": {"type": "string"},
+                "limit": {"type": "integer", "minimum": 1, "maximum": 100, "default": 20},
+            },
+            "required": ["query"],
         },
-        "required": ["query"],
     },
 }
 
 AUDIT_WIKI_TOOL_SCHEMA = {
-    "name": "audit_wiki",
-    "description": "Run wiki health audit (contradictions, orphans, stubs, gaps, stale pages).",
-    "input_schema": {
-        "type": "object",
-        "properties": {},
+    "type": "function",
+    "function": {
+        "name": "audit_wiki",
+        "description": "Run wiki health audit (contradictions, orphans, stubs, gaps, stale pages).",
+        "parameters": {
+            "type": "object",
+            "properties": {},
+        },
     },
 }

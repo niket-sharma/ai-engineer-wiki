@@ -4,7 +4,7 @@ aliases: [ML Platform, MLOps Platform, Feature Platform]
 tags: [system-design, mlops, feature-store, model-registry, training, serving]
 related: [feature-store, llm-serving-infra, rag-pipeline-design]
 sources: [training-knowledge, mlops-platform-patterns]
-relevance: 8
+relevance: high
 last_updated: 2025-01-15
 status: current
 ---

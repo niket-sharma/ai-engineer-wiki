@@ -1,8 +1,9 @@
-﻿import os
+import json
+import os
 from pathlib import Path
 from typing import Any
 
-import anthropic
+import openai
 
 from wiki_tool import (
     APPEND_LOG_TOOL_SCHEMA,
@@ -32,13 +33,12 @@ try:
 
     load_dotenv(REPO_ROOT / ".env")
 except ImportError:
-    # .env support is optional; env vars can still come from the shell.
     pass
 
-MODEL_NAME = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-6")
+MODEL_NAME = os.getenv("OPENAI_MODEL", "gpt-4o")
 MAX_TOKENS = int(os.getenv("AGENT_MAX_TOKENS", "4096"))
 
-client = anthropic.Anthropic()
+client = openai.OpenAI()
 
 
 def _read_text(path: Path) -> str:
@@ -62,8 +62,7 @@ Supported operations:
 - OP-2 QUERY: answer from compiled wiki only, cite pages as [[page-slug]].
 - OP-3 AUDIT: produce contradiction/orphan/stub/gap/staleness report.
 - OP-4 GENERATE: create or refresh topic Q&A pages in wiki/qa/.
-- OP-5 COMPANY PREP: create/update company pages in wiki/companies/.
-- OP-6 CHEATSHEET: create/update concise reference pages in wiki/cheatsheets/.
+- OP-5 CHEATSHEET: create/update concise reference pages in wiki/cheatsheets/.
 
 Mandatory rules:
 - Never write outside wiki/.
@@ -123,53 +122,56 @@ def _dispatch_tool_call(name: str, payload: dict[str, Any]) -> str:
 
 def run_agent(user_query: str, history: list) -> tuple[str, list]:
     """Single agent turn with tool use."""
-    if not os.getenv("ANTHROPIC_API_KEY"):
+    if not os.getenv("OPENAI_API_KEY"):
         raise RuntimeError(
-            "Missing ANTHROPIC_API_KEY. Set it in your shell or add it to .env at repo root."
+            "Missing OPENAI_API_KEY. Set it in your shell or add it to .env at repo root."
         )
 
     history.append({"role": "user", "content": user_query})
 
     while True:
-        response = client.messages.create(
+        messages = [{"role": "system", "content": SYSTEM_PROMPT}] + history
+        response = client.chat.completions.create(
             model=MODEL_NAME,
             max_tokens=MAX_TOKENS,
-            system=SYSTEM_PROMPT,
             tools=TOOLS,
-            messages=history,
+            messages=messages,
         )
 
-        if response.stop_reason == "tool_use":
-            history.append({"role": "assistant", "content": response.content})
-            tool_results = []
+        choice = response.choices[0]
 
-            for block in response.content:
-                if block.type != "tool_use":
-                    continue
-
-                try:
-                    result = _dispatch_tool_call(block.name, block.input or {})
-                except Exception as exc:  # noqa: BLE001
-                    result = f"Tool error in {block.name}: {exc}"
-
-                tool_results.append(
+        if choice.finish_reason == "tool_calls":
+            assistant_msg = choice.message
+            history.append({
+                "role": "assistant",
+                "content": assistant_msg.content,
+                "tool_calls": [
                     {
-                        "type": "tool_result",
-                        "tool_use_id": block.id,
-                        "content": result,
+                        "id": tc.id,
+                        "type": "function",
+                        "function": {
+                            "name": tc.function.name,
+                            "arguments": tc.function.arguments,
+                        },
                     }
-                )
+                    for tc in (assistant_msg.tool_calls or [])
+                ],
+            })
 
-            history.append({"role": "user", "content": tool_results})
+            for tc in (assistant_msg.tool_calls or []):
+                try:
+                    payload = json.loads(tc.function.arguments)
+                    result = _dispatch_tool_call(tc.function.name, payload)
+                except Exception as exc:  # noqa: BLE001
+                    result = f"Tool error in {tc.function.name}: {exc}"
+
+                history.append({
+                    "role": "tool",
+                    "tool_call_id": tc.id,
+                    "content": result,
+                })
             continue
 
-        answer = ""
-        for content_block in response.content:
-            if getattr(content_block, "type", "") == "text":
-                answer += content_block.text
-
-        if not answer:
-            answer = "I could not produce a text response for that request."
-
+        answer = choice.message.content or "I could not produce a text response for that request."
         history.append({"role": "assistant", "content": answer})
         return answer, history
