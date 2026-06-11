@@ -56,3 +56,6 @@ Drop any of the following into `raw/` and say "Ingest raw/<path>":
 - DeepSeek-R1 paper notes → `raw/rl-and-rlhf/`
 - LangGraph documentation → `raw/rag-retrieval/`
 - Company JDs → `raw/company-specific/`
+## [OP] 2026-06-11 01:20
+ASSESS: graded 2026-06-11-kv-cache-drill.md — overall 1.2/4 over 5 questions; report wiki/reports/2026-06-11-kv-cache.md; queued 4 maintenance task(s).
+

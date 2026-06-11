@@ -447,3 +447,81 @@ Map each day to specific wiki pages and Q&A sets.
 
 *BUILD_PLAN.md v1.0 — AI Engineer Wiki*
 *Use alongside SKILL.md. Start at Phase 0 and work forward.*
+
+---
+
+# Appendix — Interview Agent: `agent.py` Dispatch Map & Extension Points
+
+> Added by interview-agent-spec.md Phase 0 (recon). Documents how operations are
+> routed today and where INTERVIEW / ASSESS / MAINTAIN plug in.
+
+## How operation dispatch works today
+
+There is **no code-level operation dispatch**. Operations (INGEST, QUERY, AUDIT,
+GENERATE, CHEATSHEET) are *prompt-routed*: the LLM reads the operation specs and
+decides which tools to call. The flow in `agent/agent.py`:
+
+1. **System prompt construction** — `_build_system_prompt()` (`agent/agent.py:51`)
+   runs **at import time** and embeds:
+   - `wiki/index.md` (full text)
+   - `skill.md` (first 24,000 chars — note the truncation at `agent/agent.py:85`)
+   - A hardcoded operation list (OP-1…OP-5) and mandatory rules.
+2. **Agent loop** — `run_agent(user_query, history)` (`agent/agent.py:123`) is a
+   standard OpenAI tool-calling loop: call model → if `finish_reason ==
+   "tool_calls"`, execute tools and loop; else return text.
+3. **Tool dispatch** — `_dispatch_tool_call(name, payload)` (`agent/agent.py:102`)
+   is the only real dispatch: an if-chain mapping 8 tool names to `wiki_tool.py`
+   functions. `TOOLS` (`agent/agent.py:90`) is the parallel list of OpenAI schemas.
+4. **Path safety** — lives entirely in `agent/wiki_tool.py` (writes restricted to
+   `wiki/`, raw reads only via `read_raw_source`).
+5. **Frontends** — `agent/cli.py` (REPL) and `agent/app.py` (Streamlit) both just
+   call `run_agent()` with an accumulated history list.
+
+## Extension points for INTERVIEW / ASSESS / MAINTAIN
+
+| # | Extension point | Location | What to change |
+|---|---|---|---|
+| 1 | System prompt op list | `_build_system_prompt()` in `agent/agent.py:55-86` | Add OP-6 INTERVIEW, OP-7 ASSESS, OP-8 MAINTAIN to the hardcoded "Supported operations" block. The skill.md excerpt is truncated at 24k chars — verify new op specs in skill.md survive the cut or raise the limit. |
+| 2 | Tool schema registry | `TOOLS` list, `agent/agent.py:90-99` | Append new tool schemas (e.g., `read_state_file`, `write_state_file`, `write_transcript`, `append_assessment_log`). |
+| 3 | Tool dispatch | `_dispatch_tool_call()`, `agent/agent.py:102-120` | Add if-branches for new tools. Consider refactoring the if-chain to a dict registry so `interview.py` / `assess.py` / `maintain.py` can register tools without editing `agent.py` (single shared-file edit, then never again — avoids parallel-agent clobbering, spec §8). |
+| 4 | Path safety | `agent/wiki_tool.py` | Current rules block writes outside `wiki/` and any write to `raw/`. New modules need carve-outs: `state/*` (ratings/queue/log), `raw/interviews/` + `raw/auto/` (transcripts and fetched sources are agent-*written* raw material). Add dedicated, narrowly-scoped tools rather than loosening `write_wiki_file`. |
+| 5 | Session-loop ownership | `run_agent()` `agent/agent.py:123` | INTERVIEW is multi-turn and stateful (Elo picker, dedup, timer) — implement as its own session manager in `agent/interview.py` that *uses* the OpenAI client + prompts directly, rather than forcing it through the single-turn `run_agent()` loop. ASSESS and MAINTAIN are batch, headless-friendly: same pattern (`agent/assess.py`, `agent/maintain.py`), thin dispatch from `cli.py`. |
+| 6 | CLI entry | `agent/cli.py` | Add `interview` / `assess` / `maintain` commands that route to the new modules instead of the generic chat loop. |
+| 7 | Streamlit | `agent/app.py` | New Interview + History tabs (spec §3.4, Phase 4). |
+| 8 | Import-time prompt staleness | `SYSTEM_PROMPT` built at import (`agent/agent.py:89`) | Long-running Streamlit sessions won't see index/skill updates mid-process; MAINTAIN regenerates pages, so it must rebuild prompts per run, not rely on import-time state. |
+
+## Interview-agent phase progress
+
+- **Phase 0 (recon & scaffolding)** — ✅ done 2026-06-10. Dirs + state seeds,
+  pytest scaffolding, CI (`.github/workflows/test.yml`), skill.md OP-6/7/8 specs.
+- **Phase 1 (INTERVIEW)** — ✅ done 2026-06-11. `agent/interview.py` (scope
+  resolution, ±150 Elo-band picker, QA-bank parser, in-session dedup,
+  transcript writer), `agent/prompts/interviewer_system.md`, `cli.py`
+  `interview` subcommand + REPL detection, OP-6 note in `agent.py` system
+  prompt, `tests/test_interview.py` (27 tests). Done-when verified: live
+  5-question kv-cache drill via CLI produced
+  `raw/interviews/2026-06-11-kv-cache-drill.md` with valid frontmatter and
+  level-2→3 escalation after a correct answer.
+- **Phase 2 (ASSESS)** — ✅ done 2026-06-11. `agent/assess.py` (transcript
+  parser, page-as-rubric LLM grader with strict-JSON + fence stripping, Elo
+  updates with K=32→16 schedule, report writer with 7-day study plan, queue
+  writer, JSONL log, assessed-flag flip), `agent/prompts/grader_system.md`,
+  `cli.py` `assess` subcommand + REPL detection, `tests/test_assess.py`
+  (18 tests incl. Elo golden cases). Done-when exceeded: live ASSESS of the
+  Phase 1 transcript wrote `wiki/reports/2026-06-11-kv-cache.md` with
+  heading-cited gaps, updated 4 concept ratings, and queued 4 generate_qa
+  tasks. Also fixed: `.env` now loads in `interview.py` so the `interview`/
+  `assess` subcommands get the API key without importing `agent.py`.
+- **Phase 3 (MAINTAIN)** — not started.
+- **Phase 4 (UI/polish)** — not started.
+
+## New state & directories (created in Phase 0)
+
+- `state/skill_ratings.json` — Elo ratings, ASSESS-owned (seeded empty: defaults = rating 1200).
+- `state/maintenance_queue.json` — ASSESS → MAINTAIN task queue (seeded `{"tasks": []}`).
+- `state/assessment_log.jsonl` — append-only per-session results (seeded empty).
+- `wiki/reports/` — human-readable weakness reports from ASSESS.
+- `raw/interviews/` — INGEST-compatible interview transcripts.
+- `raw/auto/` — watchlist-fetched sources for MAINTAIN.
+
+See `state/README.md` for schemas and invariants.

@@ -261,6 +261,168 @@ in one page", "give me a cheatsheet"
 
 ---
 
+### OP-6: INTERVIEW — Adaptive mock technical interview
+
+**Trigger phrases:** "interview me on X", "interview me on my weakest topics",
+"run a system design interview", "mock interview", "drill me on X"
+
+Conduct an adaptive mock technical interview against wiki content.
+(Spec: `interview-agent-spec.md` §3.1.)
+
+**Steps:**
+
+1. **Session setup.** Resolve scope:
+   - `topic=X` → load `wiki/concepts/` pages tagged/linked to X plus `wiki/qa/`
+     pages for X.
+   - `company=Y` → additionally load `wiki/companies/Y.md` (when present) and
+     bias question style/topics to that page's interview-format notes.
+   - `weakest` → read `state/skill_ratings.json`, pick the N lowest-rated concepts.
+2. **Question selection.** Pull from `wiki/qa/` first; if coverage is thin,
+   generate novel questions grounded in the loaded concept pages (tag them
+   `generated:true` so ASSESS can later persist good ones back into `wiki/qa/`).
+3. **Adaptive difficulty.** Maintain a per-concept Elo-style rating
+   (see the Elo rules under OP-7 below):
+   - Correct + confident answer → escalate (e.g., KV cache basics → GQA/MQA
+     tradeoffs → paged attention / continuous batching).
+   - Wrong/partial → de-escalate one level and probe the prerequisite concept.
+   - Question difficulty levels: 1 (recall) … 5 (open-ended design under
+     constraints).
+4. **Interview styles** (flag `style=`):
+   - `drill` — rapid-fire Q&A, short answers.
+   - `deep` — one question, multiple follow-up probes ("why", "what breaks if...").
+   - `system-design` — single scenario, 20–40 min, whiteboard-style with
+     checkpoints.
+   - `behavioral` — STAR-format, sourced from `wiki/companies/` behavioral notes.
+5. **Session output.** Write a full transcript to
+   `raw/interviews/YYYY-MM-DD-<topic>-<style>.md` with this frontmatter
+   (INGEST-compatible by design):
+
+   ```yaml
+   ---
+   type: interview-transcript
+   date: 2026-06-10
+   topic: transformers
+   style: deep
+   company: capital-one        # optional
+   duration_min: 30
+   questions: 7
+   concepts_touched: [self-attention, kv-cache, rope]
+   assessed: false             # ASSESS flips this to true
+   ---
+   ```
+
+**Anti-leak rule:** During the session, never reveal rubric content or wiki
+citations until ASSESS. The interviewer asks and probes; it does not teach
+mid-session (unless `mode=tutor` is explicitly set).
+
+---
+
+### OP-7: ASSESS — Grade a completed interview session
+
+**Trigger phrases:** "assess my interview", "grade my session", "score the
+transcript", "how did I do"
+
+Grade a completed interview session against the wiki.
+(Spec: `interview-agent-spec.md` §3.2.)
+
+**Steps:**
+
+1. Load the transcript + every concept page referenced by the session's
+   questions. The **concept page is the rubric** (full-page router pattern —
+   load whole pages as context, never chunk).
+2. For each Q/A pair, produce:
+   - `score` 0–4 (0 = no answer, 4 = senior-level complete with tradeoffs)
+   - `gaps`: bullet list of missing key points, each citing the wiki page +
+     heading
+   - `misconceptions`: anything stated that contradicts the wiki (these are
+     gold — flag them prominently)
+   - `wiki_gap`: boolean — set true when the answer was reasonable but the wiki
+     page lacked the depth to grade it properly (**this is the self-maintenance
+     hook**)
+3. Update `state/skill_ratings.json` (Elo update per concept). Elo rules:
+   - Start at 1200. Question difficulty maps to opponent rating
+     (level 1 = 1000 … level 5 = 1800).
+   - K-factor 32 for a concept's first 5 sessions, then 16.
+   - Score 0–4 maps to Elo outcome: 0–1 → loss, 2 → draw, 3–4 → win.
+   - Difficulty selection rule: pick questions whose level rating is within
+     ±150 of the concept's current rating (productive struggle zone).
+   - **Only ASSESS may modify `state/skill_ratings.json`.**
+4. Write `wiki/reports/YYYY-MM-DD-<topic>.md` — human-readable weakness
+   report: summary scores, top 3 weaknesses, top 3 strengths, misconception
+   list, and a **7-day micro study plan** with links to existing wiki pages.
+5. Append a machine-readable block to `state/assessment_log.jsonl`:
+
+   ```json
+   {"date": "2026-06-10", "topic": "transformers", "style": "deep",
+    "overall": 2.7, "per_concept": {"kv-cache": 3, "rope": 1},
+    "misconceptions": ["claimed RoPE is applied to V"],
+    "report": "wiki/reports/2026-06-10-transformers.md"}
+   ```
+
+6. **Trigger follow-ups automatically:**
+   - For each concept scoring ≤ 2 → queue a `GENERATE` task (harder Q&A for
+     that topic).
+   - For each `wiki_gap=true` → queue an `AUDIT`-style stub flag on that
+     concept page.
+   - Queue file: `state/maintenance_queue.json` (consumed by OP-8 MAINTAIN).
+7. Flip `assessed: true` in the transcript frontmatter and append the
+   operation to `wiki/log.md`.
+
+---
+
+### OP-8: MAINTAIN — Autonomous weekly updater
+
+**Trigger phrases:** "run maintenance", "process the maintenance queue",
+"weekly update", headless invocation via GitHub Actions cron.
+
+Runs headless via GitHub Actions (cron) or manually via CLI.
+(Spec: `interview-agent-spec.md` §3.3.)
+
+**Steps:**
+
+1. **Consume the queue.** Process `state/maintenance_queue.json`:
+   - `generate_qa` tasks → run OP-4 GENERATE for the topic at the requested
+     difficulty.
+   - `wiki_gap` tasks → expand the flagged concept page section using `raw/`
+     sources; if no source exists, add to the watchlist below.
+2. **Monitor sources.** Use the watchlist (`agent/watchlist.yaml`): arXiv
+   categories (cs.CL, cs.LG), Anthropic/OpenAI/Meta release blogs, HF blog.
+   Fetch new items since last run into `raw/auto/`.
+3. **Relevance filter.** For each new item, score relevance against
+   `wiki/index.md` topics + current weakness ratings. Ingest only items above
+   threshold; weakness-related topics get priority boost.
+4. **Draft in the wiki's house style.** INGEST relevant items → draft/update
+   concept pages. Style guide: mirror existing pages (bottom-up explanations,
+   shape-annotated tensor walkthroughs before intuition, explicit
+   prerequisites section, Q&A at bottom).
+5. **Open a PR, never push to main.** Branch `maintain/YYYY-MM-DD`, one PR per
+   run, PR body = changelog table (page, action, source, reason) + diff stats.
+   The human reviews and merges. New/changed pages automatically become
+   interviewable.
+6. Append run summary to `wiki/log.md`.
+
+**Safety rails:**
+- Never delete pages.
+- Never modify `state/skill_ratings.json` (that is ASSESS-only).
+- Cap pages touched per run at 12.
+- PRs must pass `scripts/validate_wiki.py`.
+
+**Queue task schema (`state/maintenance_queue.json`):**
+
+```json
+{
+  "tasks": [
+    {"id": "q-001", "type": "generate_qa", "concept": "gqa",
+     "difficulty": 4, "reason": "scored 1/4 on 2026-06-10", "status": "pending"},
+    {"id": "q-002", "type": "wiki_gap", "page": "wiki/concepts/rope.md",
+     "section": "extrapolation behavior", "reason": "rubric too thin to grade",
+     "status": "pending"}
+  ]
+}
+```
+
+---
+
 ## 5. Wiki Page Template
 
 Use this template when creating new concept pages:

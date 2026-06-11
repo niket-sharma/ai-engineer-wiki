@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "updated": "2026-06-11T01:20:45Z",
+  "concepts": {
+    "kv-cache": {
+      "rating": 1208,
+      "sessions": 1,
+      "last_assessed": "2026-06-11",
+      "trend": [
+        1208
+      ],
+      "wiki_page": "wiki/concepts/kv-cache.md"
+    },
+    "attention-mechanism": {
+      "rating": 1200,
+      "sessions": 1,
+      "last_assessed": "2026-06-11",
+      "trend": [
+        1200
+      ],
+      "wiki_page": "wiki/concepts/attention-mechanism.md"
+    },
+    "flash-attention": {
+      "rating": 1192,
+      "sessions": 1,
+      "last_assessed": "2026-06-11",
+      "trend": [
+        1192
+      ],
+      "wiki_page": "wiki/concepts/flash-attention.md"
+    },
+    "paged-attention": {
+      "rating": 1192,
+      "sessions": 1,
+      "last_assessed": "2026-06-11",
+      "trend": [
+        1192
+      ],
+      "wiki_page": "wiki/concepts/paged-attention.md"
+    }
+  }
+}

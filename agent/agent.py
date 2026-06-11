@@ -63,6 +63,14 @@ Supported operations:
 - OP-3 AUDIT: produce contradiction/orphan/stub/gap/staleness report.
 - OP-4 GENERATE: create or refresh topic Q&A pages in wiki/qa/.
 - OP-5 CHEATSHEET: create/update concise reference pages in wiki/cheatsheets/.
+- OP-6 INTERVIEW: adaptive mock interview. This is a stateful multi-turn session
+  that runs OUTSIDE this chat loop — do not attempt it here. When the user asks
+  for an interview, tell them to run: python cli.py interview --topic <slug>
+  [--style drill|deep|system-design|behavioral] [--questions N] (or just type
+  "interview me on <topic>" in the CLI REPL, which launches it directly).
+- OP-7 ASSESS: grade a completed interview transcript. Also runs outside this
+  chat loop: python cli.py assess [--transcript raw/interviews/<file>.md]
+  (or type "assess my interview" in the CLI REPL).
 
 Mandatory rules:
 - Never write outside wiki/.

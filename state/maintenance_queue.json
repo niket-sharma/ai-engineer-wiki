@@ -1,0 +1,36 @@
+{
+  "tasks": [
+    {
+      "id": "q-001",
+      "type": "generate_qa",
+      "concept": "attention-mechanism",
+      "difficulty": 4,
+      "reason": "scored 2/4 on 2026-06-11",
+      "status": "pending"
+    },
+    {
+      "id": "q-002",
+      "type": "generate_qa",
+      "concept": "flash-attention",
+      "difficulty": 4,
+      "reason": "scored 0/4 on 2026-06-11",
+      "status": "pending"
+    },
+    {
+      "id": "q-003",
+      "type": "generate_qa",
+      "concept": "kv-cache",
+      "difficulty": 4,
+      "reason": "scored 1/4 on 2026-06-11",
+      "status": "pending"
+    },
+    {
+      "id": "q-004",
+      "type": "generate_qa",
+      "concept": "paged-attention",
+      "difficulty": 4,
+      "reason": "scored 0/4 on 2026-06-11",
+      "status": "pending"
+    }
+  ]
+}
