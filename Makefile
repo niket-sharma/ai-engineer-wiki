@@ -1,4 +1,17 @@
-.PHONY: install chat ui audit fetch lint test docs serve-docs clean
+.PHONY: install chat ui audit fetch lint test docs serve-docs clean \
+        interview assess maintain validate
+
+interview:
+	cd agent && python cli.py interview --topic $(TOPIC)
+
+assess:
+	cd agent && python cli.py assess
+
+maintain:
+	cd agent && python cli.py maintain --no-pr
+
+validate:
+	python3 scripts/validate_wiki.py
 
 install:
 	cd agent && pip install -r requirements.txt

@@ -1,0 +1,52 @@
+# OP-8 MAINTAIN — weekly autonomous wiki updater (interview-agent-spec.md §3.3).
+# Opens a PR (never pushes main); validate_wiki.py gates the merge via test.yml.
+name: Weekly Maintain
+
+on:
+  schedule:
+    # Sundays 06:00 ET (10:00 UTC during EDT).
+    - cron: "0 10 * * 0"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (no writes, no PR)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  maintain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install -r agent/requirements.txt
+
+      - name: Configure git identity
+        run: |
+          git config user.name "wiki-maintainer[bot]"
+          git config user.email "maintain-bot@users.noreply.github.com"
+
+      - name: Run MAINTAIN
+        working-directory: agent
+        env:
+          # Spec §Phase 3 note: the agent stack is OpenAI — OPENAI_API_KEY,
+          # not ANTHROPIC_API_KEY. Without the secret the run degrades to
+          # fetch + queue bookkeeping (LLM tasks stay pending).
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-4o' }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python cli.py maintain ${{ inputs.dry_run && '--dry-run' || '' }}
+
+      - name: Validate wiki (post-run gate)
+        run: python scripts/validate_wiki.py --base origin/main

@@ -512,8 +512,28 @@ decides which tools to call. The flow in `agent/agent.py`:
   heading-cited gaps, updated 4 concept ratings, and queued 4 generate_qa
   tasks. Also fixed: `.env` now loads in `interview.py` so the `interview`/
   `assess` subcommands get the API key without importing `agent.py`.
-- **Phase 3 (MAINTAIN)** — not started.
-- **Phase 4 (UI/polish)** — not started.
+- **Phase 3 (MAINTAIN)** — ✅ done 2026-06-11. `agent/maintain.py` (queue
+  consumer, watchlist fetcher with arXiv Atom API + RSS/Atom feed parser,
+  keyword-fallback + LLM relevance scorers, page drafter, PR opener via `gh`,
+  12-page budget, anti-shrink write guard), `agent/watchlist.yaml` (cs.CL,
+  cs.LG, OpenAI/DeepMind/HF feeds — Anthropic/Meta publish no RSS),
+  `agent/prompts/page_drafter_system.md` + `relevance_filter.md`,
+  `scripts/validate_wiki.py` (frontmatter schema, link integrity, index
+  coverage, no-deletion; wired into test.yml CI), `.github/workflows/
+  maintain.yml` (Sun 06:00 ET cron, OPENAI_API_KEY secret per spec note, PR
+  via GITHUB_TOKEN), `cli.py maintain` subcommand + REPL detection,
+  `tests/test_maintain.py` (31) + `tests/test_validate_wiki.py` (8).
+  Done-when verified offline: dry-run on the live seeded queue (4 tasks) +
+  live watchlist fetch (50 items, 2 passed the relevance filter) +
+  validation green. Full PR open needs OPENAI_API_KEY + gh auth.
+- **Phase 4 (UI/polish)** — ✅ done 2026-06-11 (voice skipped — optional).
+  `app.py` rebuilt with Chat / Interview / History tabs: pickers, progress
+  bar, submit/skip/end flow, post-session ASSESS button rendering the report
+  inline, plotly radar of concept ratings, per-concept trend line chart,
+  assessment-log expanders. README rewritten (architecture diagram,
+  3-command quickstart, OP table incl. OP-6/7/8). Makefile: `interview`,
+  `assess`, `maintain`, `validate` targets. plotly + pyyaml added to
+  requirements.
 
 ## New state & directories (created in Phase 0)
 

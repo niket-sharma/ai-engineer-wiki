@@ -1,50 +1,92 @@
 # AI Engineer Wiki
 
-A living, compounding knowledge base for AI engineering — transformers, alignment, RAG, agents, MLOps, system design, and classic ML. Compiled from primary sources into interlinked concept pages. Knowledge compounds; never re-derive from scratch.
+A living, compounding knowledge base for AI engineering — transformers, alignment, RAG, agents, inference/serving, evaluation, system design, and classic ML — with an **adaptive mock-interview layer** that assesses you against it and a **self-maintenance layer** that decides what the wiki learns next.
 
-## How It Works
-- Put source material in `raw/`.
-- The agent compiles and maintains structured markdown in `wiki/`.
-- Query the compiled wiki for answers, not raw chunks.
+Compiled from primary sources into interlinked concept pages (the LLM Wiki pattern: compile once, query fast). Knowledge compounds; never re-derive from scratch.
 
-## Agent Capabilities
-The agent supports the full operation set from `skill.md`:
-- `INGEST`: read `raw/...` source, update/create wiki pages, update index, append log
-- `QUERY`: answer from wiki pages with page citations
-- `AUDIT`: contradictions, orphans, stubs, missing pages, stale high-priority pages
-- `GENERATE`: create/update topic Q&A pages
-- `CHEATSHEET`: create/update quick-reference summaries
+## Architecture
 
-## Repo Layout
+```
+            ┌─────────────────────────────────────────────┐
+            │                  WIKI (knowledge)            │
+            │   concepts/  qa/  system-design/  reports/   │
+            └──────┬──────────────────────────▲────────────┘
+                   │ questions + rubrics      │ new Q&A, page updates, PRs
+                   ▼                          │
+            ┌──────────────┐   transcript   ┌─┴───────────────┐
+            │  INTERVIEWER │ ─────────────▶ │  ASSESS + REPORT │
+            │  (adaptive)  │                │  (grader)        │
+            └──────────────┘                └─┬───────────────┘
+                   ▲                          │ weakness report + queue
+                   │ Elo difficulty state     ▼
+            ┌──────┴──────────────────────────────────────┐
+            │        MAINTAINER (autonomous, weekly)       │
+            │  arXiv/release monitor → draft pages → PRs   │
+            │  weakness-driven GENERATE prioritization     │
+            └──────────────────────────────────────────────┘
+```
+
+The loop: interviews produce transcripts (`raw/interviews/`) → ASSESS grades them against wiki pages (the page **is** the rubric), updates per-concept Elo ratings, and queues maintenance tasks → MAINTAIN consumes the queue weekly, monitors arXiv/blog feeds, drafts pages, and opens a PR for human review. Weak concepts automatically get harder questions and richer pages.
+
+## Run your first interview in 3 commands
+
+```bash
+cd agent && pip install -r requirements.txt
+export OPENAI_API_KEY="your_key_here"
+python cli.py interview --topic kv-cache --questions 5
+```
+
+Then grade it:
+
+```bash
+python cli.py assess
+```
+
+You get a scored report in `wiki/reports/`, updated Elo ratings in `state/skill_ratings.json`, and queued follow-up work in `state/maintenance_queue.json`.
+
+## Operations
+
+| Op | Trigger | What happens |
+|---|---|---|
+| **INGEST** | `Ingest raw/...` | Read raw source, update/create wiki pages, update index, append log |
+| **QUERY** | `What does the wiki say about...` | Answer from compiled wiki only, cite `[[page-slug]]` |
+| **AUDIT** | `Run a full wiki audit` | Contradictions, orphans, stubs, missing pages, stale pages |
+| **GENERATE** | `Generate questions on...` | L1/L2/L3 Q&A pages in `wiki/qa/` |
+| **CHEATSHEET** | `Make a cheatsheet for...` | Quick-reference pages in `wiki/cheatsheets/` |
+| **INTERVIEW** | `python cli.py interview` or "interview me on X" | Adaptive mock interview; Elo-banded difficulty, transcript to `raw/interviews/` |
+| **ASSESS** | `python cli.py assess` or "assess my interview" | Grade vs wiki rubrics, Elo updates, weakness report, queue follow-ups |
+| **MAINTAIN** | `python cli.py maintain` or weekly GitHub Action | Consume queue, fetch watchlist, draft pages, open a PR (never pushes main) |
+
+## Adaptive difficulty (Elo)
+
+Each concept carries an Elo rating (start 1200). Question levels 1–5 map to opponent ratings 1000–1800; questions are picked within ±150 of your rating (the productive-struggle zone). Scores 0–1/2/3–4 map to loss/draw/win; K=32 for a concept's first 5 sessions, then 16. Two strong sessions on a concept measurably raise its question difficulty. Only ASSESS writes `state/skill_ratings.json`.
+
+## Self-maintenance
+
+`python cli.py maintain` (or the weekly `maintain.yml` Action) runs headless:
+
+1. Consumes `state/maintenance_queue.json` — harder Q&A for weak concepts, page expansion for `wiki_gap` flags.
+2. Polls `agent/watchlist.yaml` (arXiv cs.CL/cs.LG, Anthropic/OpenAI/Meta/HF blogs) into `raw/auto/`.
+3. Relevance-filters against wiki topics, boosting your current weaknesses.
+4. Drafts pages in the wiki's house style, then opens a PR on branch `maintain/YYYY-MM-DD`.
+
+Safety rails: never deletes pages, never touches skill ratings, ≤12 pages per run, and `scripts/validate_wiki.py` gates every PR in CI.
+
+## Repo layout
+
 ```text
-wiki/
-  concepts/
-  system-design/
-  cheatsheets/
-  qa/
-  index.md
-  log.md
-raw/
-  transformers/
-  rl-and-rlhf/
-  inference-serving/
-  rag-retrieval/
-  agents/
-  evaluation/
-  production-ai/
-  system-design/
-  statistics-and-ml/
-  coding-and-algos/
-agent/
-  agent.py
-  wiki_tool.py
-  cli.py
-  app.py
-  fetch_sources.py
-  requirements.txt
+wiki/                 compiled knowledge (the agent writes only here)
+  concepts/  system-design/  qa/  cheatsheets/  reports/  index.md  log.md
+raw/                  immutable source material (+ interviews/, auto/)
+state/                Elo ratings, maintenance queue, assessment log (git-versioned)
+agent/                agent.py · wiki_tool.py · interview.py · assess.py ·
+                      maintain.py · cli.py · app.py · prompts/ · watchlist.yaml
+scripts/              validate_wiki.py (CI gate) · wikilinks_to_md.py (MkDocs)
+tests/                offline test suite (LLM calls faked)
 ```
 
 ## Setup
+
 ```bash
 cd agent
 python -m venv .venv
@@ -52,38 +94,101 @@ source .venv/bin/activate  # Windows: .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
 
-Set your OpenAI key:
 ```bash
 export OPENAI_API_KEY="your_key_here"
-
-# Optional overrides
 export OPENAI_MODEL="gpt-4o"      # default
 export AGENT_MAX_TOKENS="4096"    # default
 ```
 
 ## Run
-### Terminal chat
+
 ```bash
-cd agent && python cli.py
+make chat        # terminal REPL (chat + "interview me on <topic>")
+make ui          # Streamlit: Chat / Interview / History tabs
+make maintain    # weekly maintainer, local (no PR)
+make test        # offline test suite
+make validate    # wiki integrity gate
+cd agent && python fetch_sources.py --list   # starter sources
 ```
 
-### Streamlit UI
+## Testing & running the full stack
+
+### 1. Unit tests (no API key needed)
+
 ```bash
-cd agent && streamlit run app.py
+make test
+# or: cd agent && source .venv/bin/activate && pytest tests/ -q
 ```
 
-### Fetch starter sources
+All tests run offline (LLM calls are faked). Should complete in under 1 second.
+
+### 2. Terminal chat REPL
+
 ```bash
-cd agent && python fetch_sources.py --list
-cd agent && python fetch_sources.py --only attention-is-all-you-need
+cd agent && source .venv/bin/activate
+python cli.py
 ```
 
-## Example Prompts
-- `Ingest raw/transformers/attention-is-all-you-need.md`
-- `What does the wiki say about KV cache tradeoffs?`
-- `Run a full wiki audit`
-- `Generate questions on LoRA and save to wiki/qa/rl-qa.md`
-- `Make a cheatsheet for positional encoding`
+| Goal | Prompt |
+|---|---|
+| QUERY | `what does the wiki say about kv-cache?` |
+| INGEST | `ingest raw/transformers/attention-is-all-you-need.md` |
+| GENERATE | `generate questions on kv-cache` |
+| CHEATSHEET | `make a cheatsheet for transformers` |
+| AUDIT | `audit the wiki` |
+| INTERVIEW | `interview me on kv-cache` |
+| ASSESS | `assess my interview` |
+| MAINTAIN | `run maintenance` |
 
-## Topics Covered
+### 3. Interview subcommand
+
+```bash
+python cli.py interview --topic kv-cache --style drill --questions 3
+python cli.py interview --topic transformers --style deep
+python cli.py interview --weakest          # picks your lowest-rated concepts
+```
+
+Styles: `drill` (rapid-fire), `deep` (one question + follow-ups), `system-design`, `behavioral`.
+
+### 4. Assess subcommand
+
+```bash
+python cli.py assess                       # auto-picks latest unassessed transcript
+python cli.py assess --transcript raw/interviews/2026-06-11-kv-cache-drill.md
+```
+
+Writes a scored report to `wiki/reports/`, updates Elo ratings in `state/skill_ratings.json`, and queues follow-up tasks in `state/maintenance_queue.json`.
+
+### 5. Maintain subcommand
+
+```bash
+python cli.py maintain --dry-run --no-fetch   # safe: process queue only, no network, no PR
+python cli.py maintain --dry-run              # fetch watchlist but don't open a PR
+python cli.py maintain                        # full run: fetch + draft + open PR (needs `gh` CLI)
+```
+
+### 6. Streamlit UI
+
+```bash
+cd agent && source .venv/bin/activate
+streamlit run app.py
+# opens http://localhost:8501
+```
+
+Three tabs:
+- **Chat** — same operations as the REPL
+- **Interview** — topic/style/company presets, live adaptive session, "Assess now" button
+- **History** — Elo radar chart + per-concept trend lines from `state/assessment_log.jsonl`
+
+### End-to-end smoke test
+
+```bash
+python cli.py interview --topic kv-cache --style drill --questions 3
+python cli.py assess
+cat state/maintenance_queue.json              # verify tasks were queued
+python cli.py maintain --dry-run --no-fetch  # verify queue is consumed
+```
+
+## Topics covered
+
 Transformers · RLHF/DPO/GRPO · RAG & Retrieval · LLM Agents · Inference & Serving · Evaluation · Production AI · System Design · Statistics · Algorithms

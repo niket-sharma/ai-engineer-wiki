@@ -63,6 +63,14 @@ def chat_repl() -> None:
             run_assess()
             continue
 
+        from maintain import parse_maintain_request
+
+        if parse_maintain_request(query):
+            from maintain import run_maintain
+
+            run_maintain(no_pr=True)
+            continue
+
         try:
             answer, history = run_agent(query, history)
         except Exception as exc:  # noqa: BLE001
@@ -98,7 +106,31 @@ def main() -> None:
                    help="Path under raw/interviews/; defaults to the latest "
                         "unassessed transcript")
 
+    m = sub.add_parser("maintain", help="Run the weekly maintainer (OP-8)")
+    m.add_argument("--dry-run", action="store_true",
+                   help="Report what would change without writing")
+    m.add_argument("--no-fetch", action="store_true",
+                   help="Skip the watchlist fetch (queue tasks only)")
+    m.add_argument("--no-pr", action="store_true",
+                   help="Apply changes to the working tree without branching/PR")
+    m.add_argument("--max-pages", type=int, default=12,
+                   help="Cap on wiki pages touched (hard max 12)")
+    m.add_argument("--no-llm", action="store_true",
+                   help="Offline mode; LLM-dependent tasks stay pending")
+
     args = parser.parse_args()
+
+    if args.command == "maintain":
+        from maintain import run_maintain
+
+        run_maintain(
+            dry_run=args.dry_run,
+            no_fetch=args.no_fetch,
+            no_pr=args.no_pr,
+            max_pages=args.max_pages,
+            use_llm=False if args.no_llm else None,
+        )
+        return
 
     if args.command == "assess":
         from assess import run_assess

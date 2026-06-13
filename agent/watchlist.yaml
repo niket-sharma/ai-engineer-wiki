@@ -1,0 +1,29 @@
+# Watchlist for OP-8 MAINTAIN (spec §3.3 step 2).
+# Fetched weekly into raw/auto/, relevance-filtered, then ingested.
+
+settings:
+  # Minimum relevance score (0-10) for an item to be ingested.
+  relevance_threshold: 6
+  # Hard cap on auto-ingests per run (spec §8: API cost rail).
+  max_auto_ingests: 5
+  # Max items fetched per source per run.
+  max_items_per_source: 10
+
+arxiv:
+  # arXiv API categories, polled via the public Atom export endpoint.
+  - category: cs.CL
+  - category: cs.LG
+
+# Note: Anthropic and Meta AI publish no public RSS feeds (verified 2026-06);
+# a dead feed is a per-source warning, not a run failure.
+feeds:
+  - name: openai-news
+    url: https://openai.com/news/rss.xml
+  - name: deepmind-blog
+    url: https://deepmind.google/blog/rss.xml
+  - name: huggingface-blog
+    url: https://huggingface.co/blog/feed.xml
+
+# Topics MAINTAIN wants sources for (wiki_gap tasks with no raw/ coverage
+# land here; matching watchlist items get a relevance boost).
+wanted_topics: []

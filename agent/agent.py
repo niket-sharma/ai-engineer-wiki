@@ -71,6 +71,11 @@ Supported operations:
 - OP-7 ASSESS: grade a completed interview transcript. Also runs outside this
   chat loop: python cli.py assess [--transcript raw/interviews/<file>.md]
   (or type "assess my interview" in the CLI REPL).
+- OP-8 MAINTAIN: autonomous weekly updater (queue consumer, watchlist fetch,
+  relevance filter, page drafting, PR). Also runs outside this chat loop:
+  python cli.py maintain [--dry-run] [--no-fetch] [--no-pr]
+  (or type "run maintenance" in the CLI REPL). It never deletes pages, never
+  touches state/skill_ratings.json, and caps pages touched at 12 per run.
 
 Mandatory rules:
 - Never write outside wiki/.
