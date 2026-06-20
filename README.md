@@ -31,7 +31,7 @@ The loop: interviews produce transcripts (`raw/interviews/`) → ASSESS grades t
 ## Run your first interview in 3 commands
 
 ```bash
-cd agent && pip install -r requirements.txt
+cd agent && python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
 export OPENAI_API_KEY="your_key_here"
 python cli.py interview --topic kv-cache --questions 5
 ```
@@ -103,11 +103,13 @@ export AGENT_MAX_TOKENS="4096"    # default
 ## Run
 
 ```bash
-make chat        # terminal REPL (chat + "interview me on <topic>")
-make ui          # Streamlit: Chat / Interview / History tabs
-make maintain    # weekly maintainer, local (no PR)
-make test        # offline test suite
-make validate    # wiki integrity gate
+make chat                    # terminal REPL (chat + "interview me on <topic>")
+make ui                      # Streamlit: Chat / Interview / History tabs
+make interview TOPIC=kv-cache  # run interview on a topic (TOPIC= required)
+make assess                  # grade the latest unassessed transcript
+make maintain                # weekly maintainer, local (no PR)
+make test                    # offline test suite
+make validate                # wiki integrity gate
 cd agent && python fetch_sources.py --list   # starter sources
 ```
 
@@ -145,10 +147,27 @@ python cli.py
 ```bash
 python cli.py interview --topic kv-cache --style drill --questions 3
 python cli.py interview --topic transformers --style deep
-python cli.py interview --weakest          # picks your lowest-rated concepts
+python cli.py interview --weakest               # picks your lowest-rated concepts
+python cli.py interview --topic kv-cache --no-llm  # offline: question-bank only, no API calls
 ```
 
 Styles: `drill` (rapid-fire), `deep` (one question + follow-ups), `system-design`, `behavioral`.
+
+All flags:
+
+| Flag | Default | Description |
+|---|---|---|
+| `--topic <slug>` | — | Wiki concept slug to interview on (e.g. `kv-cache`, `transformers`) |
+| `--style` | `drill` | Session style: `drill`, `deep`, `system-design`, `behavioral` |
+| `--questions N` | 5 | Max questions per session |
+| `--duration N` | none | Time-cap in minutes (ends session when elapsed) |
+| `--level N` | auto | Override starting difficulty 1–5 (bypasses Elo; 1=recall, 5=open design) |
+| `--weakest` | false | Interview on your 3 lowest-rated concepts instead of a specific topic |
+| `--tutor` | false | Allow corrective nudges mid-session (less strict) |
+| `--company <slug>` | none | Bias questions toward a company's interview style |
+| `--no-llm` | false | Question-bank only; skips all API calls (useful for offline testing) |
+
+> **No API key?** Pass `--no-llm` and the session falls back to `wiki/qa/` question bank at a fixed difficulty. All transcript and assessment logic still works; only novel question generation and adaptive follow-ups are skipped.
 
 ### 4. Assess subcommand
 
@@ -164,8 +183,19 @@ Writes a scored report to `wiki/reports/`, updates Elo ratings in `state/skill_r
 ```bash
 python cli.py maintain --dry-run --no-fetch   # safe: process queue only, no network, no PR
 python cli.py maintain --dry-run              # fetch watchlist but don't open a PR
+python cli.py maintain --no-llm              # offline: queue tasks only, skip LLM page drafts
 python cli.py maintain                        # full run: fetch + draft + open PR (needs `gh` CLI)
 ```
+
+All flags:
+
+| Flag | Description |
+|---|---|
+| `--dry-run` | Report what would change without writing anything |
+| `--no-fetch` | Skip the arXiv/blog watchlist fetch; process queue tasks only |
+| `--no-pr` | Apply changes to working tree without creating a branch or PR |
+| `--max-pages N` | Cap on wiki pages touched per run (hard max 12) |
+| `--no-llm` | Offline mode — LLM-dependent tasks stay pending, no API calls |
 
 ### 6. Streamlit UI
 
